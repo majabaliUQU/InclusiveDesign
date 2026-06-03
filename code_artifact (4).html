@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سهولة الوصول الرقمي: إتاحة النوافذ المنبثقة (Pop-Ups)</title>
+    <!-- Tailwind CSS للتصميم العصري -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- خطوط جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* تصميم حلقة التركيز المخصصة للتحقق البصري أثناء التنقل بـ Tab */
+        :focus {
+            outline: 4px solid #6366f1 !important;
+            outline-offset: 2px !important;
+        }
+        /* إيقاف التفاعل مع الخلفية عند فتح النافذة المنبثقة الصحيحة */
+        .backdrop-active {
+            filter: blur(4px);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- شريط التنقل العلوي -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-purple-100 text-purple-600 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-950">تفاعل النوافذ المنبثقة (Pop-Ups & Dialogs)</h1>
+                    <p class="text-xs text-slate-500">الدرس الثالث: إدارة التركيز ومنع تشتيت المستخدمين</p>
+                </div>
+            </div>
+            
+            <!-- زر النطق الصوتي التفاعلي -->
+            <div class="flex items-center gap-2 bg-purple-50 px-3 py-2 rounded-lg border border-purple-100">
+                <label for="voiceToggle" class="text-sm font-semibold text-purple-900 cursor-pointer select-none">
+                    🔊 تفعيل نطق محاكاة قارئ الشاشة
+                </label>
+                <input type="checkbox" id="voiceToggle" checked class="w-4 h-4 text-purple-600 border-slate-300 rounded focus:ring-purple-500 cursor-pointer">
+            </div>
+        </div>
+    </header>
+
+    <main id="mainContent" class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+        
+        <!-- القسم الأول: لوحة المفاهيم والمشكلة من واقع الصورة المرفقة -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <!-- كرت المشكلة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-rose-600">
+                        <span class="p-1.5 bg-rose-50 rounded-lg">⚠️</span>
+                        <h2 class="text-lg font-bold">1. المشكلة: مقاطعة المستخدمين</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        عندما تظهر نافذة منبثقة (Pop-up) بشكل مفاجئ دون إدارة برمجية صحيحة، يواجه المستخدمون الصعوبات التالية:
+                    </p>
+                    <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside mb-4">
+                        <li><b>صعوبة العثور على زر الإغلاق:</b> قد يكون الزر غير مرئي أو مخفياً خلف تصميم معقد.</li>
+                        <li><b>مصيدة لوحة المفاتيح (Keyboard Trap):</b> يعجز مستخدمو لوحة المفاتيح عن إغلاق النافذة أو تخرج نقراتهم للخلفية دون علمهم.</li>
+                        <li><b>فقدان التوجيه لقارئ الشاشة:</b> لا يتم إخبار الكفيف بظهور نافذة جديدة فيبقى يقرأ محتوى الخلفية القديم.</li>
+                    </ul>
+                </div>
+                <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg text-xs text-rose-800">
+                    <strong>النتيجة الكارثية:</strong> يفقد الكفيف والمستخدم الحركي السيطرة الكاملة على المتصفح ويضطرون لإغلاق الموقع بأكمله.
+                </div>
+            </div>
+
+            <!-- كرت سبب كونها مشكلة سهولة وصول -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-amber-600">
+                        <span class="p-1.5 bg-amber-50 rounded-lg">🔍</span>
+                        <h2 class="text-lg font-bold">لماذا هي عائق وصول حقيقي؟</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                        يفقد المستخدم ثلاثة عناصر أساسية عند ظهور نافذة منبثقة سيئة:
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex gap-2 items-start">
+                            <span class="font-bold text-amber-600 text-sm">👁️ التركيز (Focus):</span>
+                            <span class="text-xs text-slate-600">ينتقل البصر للنافذة الجديدة بينما يظل مؤشر لوحة المفاتيح عالقاً بالخلفية غير المرئية.</span>
+                        </div>
+                        <div class="flex gap-2 items-start">
+                            <span class="font-bold text-amber-600 text-sm">📋 السياق (Context):</span>
+                            <span class="text-xs text-slate-600">لا يعلم قارئ الشاشة أن السياق انتقل إلى نافذة فرعية، مما يسبب خلط البيانات.</span>
+                        </div>
+                        <div class="flex gap-2 items-start">
+                            <span class="font-bold text-amber-600 text-sm">⚙️ التحكم (Control):</span>
+                            <span class="text-xs text-slate-600">عدم تمكين زر الـ Escape يعيق رغبة المستخدم الطبيعية في المغادرة السريعة.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كرت الممارسة السليمة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-emerald-600">
+                        <span class="p-1.5 bg-emerald-50 rounded-lg">✅</span>
+                        <h2 class="text-lg font-bold">الممارسة السليمة (W3C ARIA)</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        لجعل أي نافذة منبثقة متوافقة مع معايير الإتاحة الرقمية العالمية، يجب توفير:
+                    </p>
+                    <ul class="space-y-2 text-slate-600 text-xs list-decimal list-inside">
+                        <li><b>زر إغلاق واضح ومرئي</b> ذو تباين لوني عالٍ ووصف برمي ممتاز.</li>
+                        <li><b>إمكانية الإغلاق السريع</b> بالضغط على زر الهروب <kbd class="bg-slate-200 px-1.5 py-0.5 rounded font-mono text-slate-800 text-[10px]">Escape</kbd>.</li>
+                        <li><b>حجز وتوجيه التركيز (Focus Management):</b> نقل مؤشر الكتابة تلقائياً للنافذة بمجرد ظهورها وحبسه داخلها حتى تُغلق.</li>
+                    </ul>
+                </div>
+                <div class="bg-purple-950 text-purple-100 p-4 rounded-xl text-xs mt-4">
+                    <strong class="block text-amber-300 mb-1">🎯 القاعدة الذهبية:</strong>
+                    "يجب أن يكون المستخدم دائماً قادراً على مغادرة أي نافذة منبثقة بسهولة ويسر وبأي أداة إدخال كانت."
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الثاني: منطقة العروض التفاعلية والمقارنة الحية -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            
+            <!-- العمود الأيمن: محاكاة النافذة المنبثقة السيئة -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-rose-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-rose-50 text-rose-600 text-xs font-bold px-3 py-1 rounded">❌ تجربة سيئة (غير متوافقة)</span>
+                        <span class="text-xs text-slate-400 font-mono">طريقة تصميم عشوائية</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">نافذة الاشتراك في النشرة البريدية</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        اضغط على الزر أدناه لتجربة ظهور نافذة منبثقة عشوائية. حاول إغلاقها باستخدام لوحة المفاتيح <kbd class="bg-slate-100 px-1 py-0.5 rounded font-mono">Tab</kbd> أو زر الـ <kbd class="bg-slate-100 px-1 py-0.5 rounded font-mono">Escape</kbd>. ستلاحظ كيف يضيع تركيزك خلف الشاشة!
+                    </p>
+                    
+                    <div class="p-4 bg-slate-50 rounded-2xl mb-6 border border-slate-100 text-xs space-y-2 text-slate-600">
+                        <p>💡 <b>خطوات التجربة:</b></p>
+                        <ol class="list-decimal list-inside space-y-1">
+                            <li>انقر على زر "فتح النافذة السيئة".</li>
+                            <li>حاول الضغط على زر <kbd class="bg-slate-200 px-1 rounded font-mono text-slate-800 text-[10px]">Tab</kbd> عدة مرات للتنقل.</li>
+                            <li>ستلاحظ أن التركيز ينتقل للعناصر في الخلفية (التي لا تراها) بدلاً من البقاء داخل النافذة!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- زر التشغيل للسيئة -->
+                    <button id="badTriggerBtn" onclick="openBadModal()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-150 shadow-lg shadow-rose-100">
+                        📂 فتح النافذة السيئة
+                    </button>
+                </div>
+            </div>
+
+            <!-- العمود الأيسر: محاكاة النافذة المنبثقة الصحيحة والمتاحة -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-emerald-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded">✅ تجربة صحيحة (متوافقة بالكامل)</span>
+                        <span class="text-xs text-slate-400 font-mono">تطبيق معايير WCAG & ARIA</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">نافذة تأكيد الطلب والاشتراك</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        اضغط على الزر أدناه لتجربة الإتاحة الكاملة. بمجرد فتحها، ينتقل التركيز فوراً لأول حقل داخلها، ويتم قفل حلقة التنقل بـ <kbd class="bg-slate-100 px-1 py-0.5 rounded font-mono">Tab</kbd> بداخلها فقط، وبضغطة واحدة على <kbd class="bg-slate-100 px-1 py-0.5 rounded font-mono">Escape</kbd> ستعود للزر بكل سهولة.
+                    </p>
+
+                    <div class="p-4 bg-slate-50 rounded-2xl mb-6 border border-slate-100 text-xs space-y-2 text-slate-600">
+                        <p>💡 <b>خطوات التجربة:</b></p>
+                        <ol class="list-decimal list-inside space-y-1">
+                            <li>انقر على زر "فتح النافذة الصحيحة".</li>
+                            <li>اضغط على زر <kbd class="bg-slate-200 px-1 rounded font-mono text-slate-800 text-[10px]">Tab</kbd>، ستجد التركيز محبوساً بشكل ذكي داخل النافذة فقط.</li>
+                            <li>اضغط على زر <kbd class="bg-slate-200 px-1 rounded font-mono text-slate-800 text-[10px]">Escape</kbd> بلوحة المفاتيح لإغلاقها فوراً والعودة تلقائياً لنفس الزر.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- زر التشغيل للصحيحة -->
+                    <button id="goodTriggerBtn" onclick="openGoodModal()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-150 shadow-lg shadow-indigo-100">
+                        ✨ فتح النافذة الصحيحة والمتاحة
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- القسم الثالث: متتبع التركيز النشط والمحاكي المباشر لقارئ الشاشة -->
+        <section class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl mb-10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2">
+                <div>
+                    <h4 class="text-md font-bold text-indigo-400 flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 bg-indigo-500 rounded-full animate-ping"></span>
+                        شاشة المطورين: متتبع التركيز الفوري (Active Focus & Screen Reader Logs)
+                    </h4>
+                    <p class="text-xs text-slate-400">تابع مسار لوحة المفاتيح وما يقرأه الكفيف في نفس اللحظة لشرح الفروقات البرمجية بشكل قاطع</p>
+                </div>
+                <button onclick="clearLogs()" class="text-xs text-indigo-300 hover:text-indigo-200 underline font-semibold">تفريغ السجلات</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- سجل لوحة المفاتيح والتركيز النشط -->
+                <div class="bg-black/50 p-4 rounded-2xl border border-slate-800">
+                    <h5 class="text-xs font-bold text-amber-400 mb-2 flex justify-between">
+                        <span>🧭 العنصر الذي يقع عليه التركيز حالياً (DOM Focus)</span>
+                        <span id="currentFocusTag" class="bg-amber-400/20 px-2 py-0.5 rounded text-[10px] text-amber-300">لم يتم تحديد تركيز بعد</span>
+                    </h5>
+                    <div id="focusFlowLog" class="h-32 overflow-y-auto font-mono text-xs text-slate-300 space-y-1">
+                        <p class="text-slate-500">// تنقل بين عناصر الصفحة بـ Tab لرؤية تتبع التركيز النشط...</p>
+                    </div>
+                </div>
+
+                <!-- محاكاة قارئ الشاشة المسموع والمكتوب -->
+                <div class="bg-black/50 p-4 rounded-2xl border border-slate-800">
+                    <h5 class="text-xs font-bold text-emerald-400 mb-2">🔊 محاكي صوت قارئ الشاشة التفاعلي</h5>
+                    <div id="screenReaderLog" class="h-32 overflow-y-auto font-mono text-xs text-emerald-400 space-y-1">
+                        <p class="text-slate-500">// بانتظار فتح أو التفاعل مع النوافذ المنبثقة...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الرابع: مقارنة الكود البرمجي التفصيلي بين الحالتين -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">مقارنة البناء البرمجي (الفرق البرمجي)</h2>
+            <p class="text-slate-500 text-xs mb-6">كيف تحل معايير سهولة الوصول مشاكل النوافذ المنبثقة برمجياً؟</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- كود النافذة السيئة -->
+                <div>
+                    <h3 class="text-sm font-bold text-rose-600 mb-2">❌ كود النافذة السيئة (المربكة)</h3>
+                    <p class="text-xs text-slate-500 mb-3">تفتقر لخواص سهولة الوصول، وتجعل المتصفح حائراً ومشتتاً.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>&lt;!-- كود عشوائي لا تراه التقنيات المساعدة كنافذة منبثقة --&gt;
+&lt;div id="badNewsletterModal"&gt;
+  &lt;h3&gt;اشترك بنشرتنا البريدية&lt;/h3&gt;
+  &lt;input type="email" placeholder="البريد الإلكتروني"&gt;
+  &lt;!-- الزر المضلل ليس زراً حقيقياً بل div أو تصميم مجهول الهوية --&gt;
+  &lt;div class="close-btn" onclick="closeBad()"&gt;إغلاق&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// لا توجد أكواد لإدارة التركيز أو التقاط زر الـ Escape!
+// التركيز يستمر بالتنقل في خلفية الموقع غير المرئية.
+&lt;/script&gt;</code></pre>
+                </div>
+
+                <!-- كود النافذة المتاحة -->
+                <div>
+                    <h3 class="text-sm font-bold text-emerald-600 mb-2">✅ كود النافذة المتاحة (المتوافقة بالكامل)</h3>
+                    <p class="text-xs text-slate-500 mb-3">تطبيق صارم لمعايير ARIA وقوانين إدارة التركيز داخل الـ DOM.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>&lt;!-- إسناد الخواص الأساسية للتعريف بالنافذة وسياقها --&gt;
+&lt;div id="goodModal" 
+     role="dialog" 
+     aria-modal="true" 
+     aria-labelledby="modalTitle"&gt;
+  
+  &lt;!-- زر إغلاق صريح ومكتوب بلغة يفهمها قارئ الشاشة --&gt;
+  &lt;button aria-label="إغلاق النافذة" onclick="closeGood()"&gt;❌&lt;/button&gt;
+  
+  &lt;h3 id="modalTitle"&gt;تأكيد الاشتراك بنجاح&lt;/h3&gt;
+  &lt;input id="firstField" type="email" placeholder="البريد"&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// عند الفتح: نقوم بحفظ الزر الذي ضغط عليه ونوجه التركيز لـ firstField
+// عند الضغط على Tab: نحبس التركيز داخل عناصر النافذة فقط.
+// عند الضغط على Escape: نغلق النافذة ونعيد التركيز للزر الأصلي.
+&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ==================== النوافذ المنبثقة الفعلية للمحاكاة والتجربة الحية ==================== -->
+
+    <!-- 1. النافذة السيئة (تظهر في المنتصف دون تظليل حقيقي للخلفية أو حجب التفاعل) -->
+    <div id="badModalElement" class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white border-4 border-rose-500 rounded-2xl p-6 shadow-2xl z-50">
+        <div class="flex justify-between items-start mb-4">
+            <h4 class="text-lg font-bold text-rose-700">🚨 نافذة ترويجية سيئة ومقاطعة!</h4>
+            <!-- لا يوجد زر X صريح ومكتوب بشكل متوافق، تم وضع نص عادي -->
+            <span class="text-xs text-slate-400 cursor-pointer hover:underline" onclick="closeBadModal()">إغلاق (غير متوافق)</span>
+        </div>
+        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            تخيل أنك تقرأ مقالاً مهماً فظهرت لك هذه النافذة دون إشعار صوتي! وقارئ الشاشة مازال يقرأ في المقال بالأسفل وكأن شيئاً لم يحدث!
+        </p>
+        <div class="space-y-3 mb-4">
+            <input type="email" placeholder="ادخل بريدك الإلكتروني للحصول على العروض" class="w-full bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs">
+        </div>
+        <div class="flex justify-end gap-2">
+            <!-- الأزرار هنا غير معرفة بشكل يسهل الوصول إليه وليس لها هرمية واضحة -->
+            <button onclick="closeBadModal()" class="bg-rose-600 text-white font-bold text-xs px-4 py-2 rounded-lg">إرسال الاشتراك</button>
+        </div>
+    </div>
+
+
+    <!-- 2. النافذة الصحيحة (تتضمن طبقة تظليل تحجب التفاعل مع الخلفية بالكامل وتدير التركيز برمجياً) -->
+    <div id="goodModalOverlay" class="hidden fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 flex items-center justify-center">
+        
+        <!-- الحاوية الأساسية للنافذة مع إسناد الـ ARIA المناسب لضمان سهولة الوصول -->
+        <div id="goodModalElement" 
+             role="dialog" 
+             aria-modal="true" 
+             aria-labelledby="goodModalTitle" 
+             aria-describedby="goodModalDesc"
+             class="w-[90%] max-w-md bg-white rounded-3xl p-6 shadow-2xl border border-emerald-500/30 text-right">
+            
+            <div class="flex justify-between items-center mb-4">
+                <h4 id="goodModalTitle" class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span class="text-emerald-500">🏆</span>
+                    تأكيد الاشتراك بنجاح
+                </h4>
+                
+                <!-- زر إغلاق صريح مدعوم بـ aria-label لوصف غرضه تماماً لقارئ الشاشة -->
+                <button id="goodCloseBtn" 
+                        onclick="closeGoodModal()" 
+                        aria-label="إغلاق النافذة التفاعلية والعودة للموقع" 
+                        class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <p id="goodModalDesc" class="text-xs text-slate-600 leading-relaxed mb-6">
+                أنت الآن تتصفح نافذة منبثقة ممتازة لسهولة الوصول. تم قفل التنقل بـ لوحة المفاتيح بداخلها، ويقرأ قارئ الشاشة تفاصيلها فوراً وبسلاسة تامة.
+            </p>
+
+            <div class="space-y-4 mb-6">
+                <div>
+                    <label for="newsletterEmail" class="block text-xs font-semibold text-slate-700 mb-1">البريد الإلكتروني المفضل:</label>
+                    <input id="newsletterEmail" type="email" placeholder="name@domain.com" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-2">
+                <button id="modalActionBtn" onclick="closeGoodModal(); simulateActionSuccess()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition duration-150">
+                    تأكيد والاشتراك الآن
+                </button>
+                <button id="modalCancelBtn" onclick="closeGoodModal()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold px-4 py-2.5 rounded-xl transition duration-150">
+                    إلغاء الأمر
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center border-t border-slate-800 text-xs mt-10">
+        <p>تم التطوير كأداة تفاعلية حية لشرح ومحاكاة معايير سهولة الوصول الرقمي للنوافذ المنبثقة (WCAG 2.1 Dialog & Focus Management).</p>
+    </footer>
+
+
+    <!-- ==================== منطق جافا سكريبت التفاعلي ==================== -->
+    <script>
+        let lastActiveElement = null; // لحفظ الزر الفعال قبل فتح النافذة المتاحة
+        let isGoodModalOpen = false;
+
+        // دالة نطق النصوص لمحاكاة قارئ الشاشة الفعلي بالصوت العربي السليم
+        function speakSimulatedVoice(text) {
+            const isVoiceEnabled = document.getElementById('voiceToggle').checked;
+            if (!isVoiceEnabled) return;
+
+            window.speechSynthesis.cancel(); // إلغاء أي نطق جاري
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // إضافة سجلات في شاشة المحاكاة
+        function appendFocusLog(message) {
+            const logContainer = document.getElementById('focusFlowLog');
+            if (logContainer.innerHTML.includes('// تنقل بين عناصر الصفحة')) {
+                logContainer.innerHTML = '';
+            }
+            const time = new Date().toLocaleTimeString('ar-EG', { hour12: false });
+            const div = document.createElement('div');
+            div.className = 'text-slate-300 border-r-2 border-indigo-500 pr-2 py-0.5';
+            div.innerHTML = `<span class="text-slate-500">[${time}]</span> ${message}`;
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function appendScreenReaderLog(message, isAlert = false) {
+            const logContainer = document.getElementById('screenReaderLog');
+            if (logContainer.innerHTML.includes('// بانتظار فتح')) {
+                logContainer.innerHTML = '';
+            }
+            const time = new Date().toLocaleTimeString('ar-EG', { hour12: false });
+            const div = document.createElement('div');
+            div.className = isAlert ? 'text-rose-400 border-r-2 border-rose-500 pr-2 py-0.5' : 'text-emerald-400 border-r-2 border-emerald-500 pr-2 py-0.5';
+            div.innerHTML = `<span class="text-slate-500">[${time}]</span> ${message}`;
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // تفريغ الشاشات والسجلات
+        function clearLogs() {
+            document.getElementById('focusFlowLog').innerHTML = `<div class="text-slate-500">// تنقل بين عناصر الصفحة بـ Tab لرؤية تتبع التركيز النشط...</div>`;
+            document.getElementById('screenReaderLog').innerHTML = `<div class="text-slate-500">// بانتظار فتح أو التفاعل مع النوافذ المنبثقة...</div>`;
+            document.getElementById('currentFocusTag').innerText = "لم يتم تحديد تركيز بعد";
+        }
+
+
+        /* ==================== تتبع وضبط التركيز في كامل الصفحة ==================== */
+        document.addEventListener('focusin', function(e) {
+            const target = e.target;
+            let description = target.tagName.toLowerCase();
+            
+            if (target.id) description += `#${target.id}`;
+            if (target.className) {
+                // تصفية الفئات لسهولة القراءة
+                const classList = target.className.split(' ').slice(0, 2).join('.');
+                description += `.${classList}`;
+            }
+            if (target.innerText) {
+                description += ` ("${target.innerText.substring(0, 15)}...")`;
+            } else if (target.placeholder) {
+                description += ` (حقل: "${target.placeholder}")`;
+            }
+
+            document.getElementById('currentFocusTag').innerText = target.tagName;
+            appendFocusLog(`انتقل التركيز إلى: ${description}`);
+        });
+
+
+        /* ==================== منطق النافذة المنبثقة السيئة (Bad Pop-Up) ==================== */
+        function openBadModal() {
+            const modal = document.getElementById('badModalElement');
+            modal.classList.remove('hidden');
+
+            appendScreenReaderLog("🔴 تم فتح النافذة المنبثقة السيئة بصرياً فقط.", true);
+            appendScreenReaderLog("🚨 [تحذير صمت]: قارئ الشاشة صامت تماماً ولم يعلن للمستخدم الكفيف عن ظهور نافذة جديدة!", true);
+            appendScreenReaderLog("⚠️ [تشتت التركيز]: لم يتم نقل التركيز إلى النافذة، لا يزال التركيز خلف الشاشة على زر 'فتح النافذة السيئة'!", true);
+            
+            speakSimulatedVoice("تم فتح النافذة. ولكن قارئ الشاشة مازال صامتاً والتركيز ضائع بالخلفية.");
+        }
+
+        function closeBadModal() {
+            document.getElementById('badModalElement').classList.add('hidden');
+            appendScreenReaderLog("🟢 تم إغلاق النافذة السيئة بصرياً.");
+            speakSimulatedVoice("تم إغلاق النافذة.");
+        }
+
+
+        /* ==================== منطق النافذة المنبثقة الصحيحة والمتاحة (Good Pop-Up) ==================== */
+        function openGoodModal() {
+            // حفظ العنصر الفعال الحالي (الزر الذي فتح النافذة)
+            lastActiveElement = document.activeElement;
+            isGoodModalOpen = true;
+
+            const overlay = document.getElementById('goodModalOverlay');
+            const mainContent = document.getElementById('mainContent');
+            const firstInput = document.getElementById('newsletterEmail');
+
+            overlay.classList.remove('hidden');
+            
+            // إضافة خاصية aria-hidden لعزل محتوى الموقع خلف النافذة وتسهيل حياة المكفوفين
+            mainContent.setAttribute('aria-hidden', 'true');
+
+            // توجيه التركيز تلقائياً ومباشرة لحقل الإدخال الأول داخل النافذة (مراعاة سهولة الوصول)
+            setTimeout(() => {
+                firstInput.focus();
+                appendScreenReaderLog("🟢 [إشعار فوري]: تم نقل التركيز برمجياً إلى حقل البريد الإلكتروني داخل النافذة.");
+                appendScreenReaderLog("🔊 [إعلان قارئ الشاشة]: 'تأثير حواري منبثق - تأكيد الاشتراك بنجاح. بريد إلكتروني، حقل إدخال كتابة.'");
+                speakSimulatedVoice("تأثير حواري منبثق، تأكيد الاشتراك بنجاح. يرجى إدخال البريد الإلكتروني");
+            }, 100);
+        }
+
+        function closeGoodModal() {
+            const overlay = document.getElementById('goodModalOverlay');
+            const mainContent = document.getElementById('mainContent');
+
+            overlay.classList.add('hidden');
+            mainContent.removeAttribute('aria-hidden');
+            isGoodModalOpen = false;
+
+            appendScreenReaderLog("🟢 تم إغلاق النافذة المنبثقة وإلغاء عزل الموقع الخلفي.");
+            
+            // إعادة التركيز تلقائياً للزر الأصلي الذي أطلق الحدث، لضمان عدم ضياع لوحة المفاتيح
+            if (lastActiveElement) {
+                lastActiveElement.focus();
+                appendScreenReaderLog("🏆 [إعادة التركيز]: تم استرجاع التركيز بنجاح للزر الأصلي المسمى 'فتح النافذة الصحيحة والمتاحة'.");
+                speakSimulatedVoice("تم إغلاق النافذة والعودة إلى الصفحة بنجاح");
+            }
+        }
+
+        function simulateActionSuccess() {
+            appendScreenReaderLog("🔊 [قارئ الشاشة]: 'نجاح، تم تأكيد اشتراكك بنجاح وسوف نتواصل معك قريباً!'");
+            speakSimulatedVoice("تم تأكيد اشتراكك بنجاح وسوف نتواصل معك قريباً");
+        }
+
+
+        /* ==================== إدارة التركيز الذكي وحبس المفاتيح (Focus Trapping & Escape Key) ==================== */
+        
+        // التقاط ضغطات لوحة المفاتيح للتعامل مع متطلبات الـ Accessibility
+        window.addEventListener('keydown', function(e) {
+            // 1. التعامل مع زر الهروب (Escape Key) لإغلاق النافذة فوراً
+            if (e.key === 'Escape') {
+                if (isGoodModalOpen) {
+                    appendFocusLog("⌨️ تم الضغط على زر [Escape] لإغلاق النافذة المنبثقة المتاحة.");
+                    closeGoodModal();
+                } else if (!document.getElementById('badModalElement').classList.contains('hidden')) {
+                    appendFocusLog("❌ تم الضغط على [Escape] ولكن النافذة السيئة تفتقد للبرمجة السليمة للإغلاق الهروبي!");
+                }
+            }
+
+            // 2. تطبيق خاصية "حبس التركيز" (Focus Trapping) للنافذة الصحيحة فقط
+            if (isGoodModalOpen && e.key === 'Tab') {
+                const modal = document.getElementById('goodModalElement');
+                
+                // البحث عن العناصر التي تدعم التركيز داخل النافذة فقط
+                const focusableElements = modal.querySelectorAll('button, input, [tabindex="0"]');
+                const firstFocusable = focusableElements[0];
+                const lastFocusable = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) { // إذا كان يضغط Shift + Tab للتنقل للخلف
+                    if (document.activeElement === firstFocusable) {
+                        lastFocusable.focus(); // اذهب للعنصر الأخير واحبس التركيز
+                        e.preventDefault();
+                    }
+                } else { // إذا كان يضغط Tab للتنقل للأمام
+                    if (document.activeElement === lastFocusable) {
+                        firstFocusable.focus(); // اذهب للعنصر الأول واحبس التركيز
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
