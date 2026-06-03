@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استغلال ذوي الإعاقة: الأنماط المظلمة في التقنيات المساعدة</title>
+    <!-- Tailwind CSS للتصميم -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- خطوط جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* مؤشر التركيز البصري المخصص للتصفح بلوحة المفاتيح */
+        :focus {
+            outline: 4px solid #f59e0b !important;
+            outline-offset: 3px !important;
+        }
+        /* حركة الوميض المزعج لمحاكاة التشتيت الحسي */
+        @keyframes sensory-disturb {
+            0%, 100% { background-color: #fef2f2; filter: saturate(1); }
+            50% { background-color: #fee2e2; filter: saturate(2) contrast(1.2); }
+        }
+        .sensory-attack {
+            animation: sensory-disturb 0.4s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- شريط التنقل العلوي -->
+    <header class="bg-slate-950 border-b border-slate-800 sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-rose-950 text-rose-500 rounded-lg border border-rose-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white">استغلال التقنيات المساعدة (Disabled-Targeted Dark Patterns)</h1>
+                    <p class="text-xs text-rose-400">ملحق الصورة image_a10445.png: كيف تُستغل الإعاقات المختلفة برمجياً وتصميمياً للتلاعب بالمستخدمين؟</p>
+                </div>
+            </div>
+            
+            <!-- أداة تفعيل نطق الصوت لمحاكاة قارئ الشاشة -->
+            <div class="flex items-center gap-2 bg-slate-900 px-3 py-2 rounded-lg border border-slate-800">
+                <label for="voiceToggle" class="text-sm font-semibold text-slate-300 cursor-pointer select-none">
+                    🔊 محاكاة نطق قارئ الشاشة بالصوت
+                </label>
+                <input type="checkbox" id="voiceToggle" checked class="w-4 h-4 text-rose-600 bg-slate-800 border-slate-700 rounded focus:ring-rose-500 cursor-pointer">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+        
+        <!-- القسم الأول: لوحة المفاهيم الأكاديمية - كيف تُستغل الإعاقات؟ -->
+        <section class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-10">
+            <!-- الإعاقة البصرية وقارئ الشاشة -->
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-3 text-sky-400">
+                        <span class="p-1 bg-sky-950/50 rounded">👁️‍🗨️</span>
+                        <h2 class="text-sm font-bold">1. استغلال المكفوفين</h2>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        <strong>طريقة الاستغلال:</strong> استخدام سمات <code>aria-hidden="true"</code> أو <code>tabindex="-1"</code> لإخفاء أزرار إلغاء الاشتراك من شجرة الإتاحة الرقمية تماماً، مما يجعل الكفيف يظن أن الصفحة لا تحتوي على مخرج، بينما يراها المبصر بوضوح.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-sky-500">
+                    🎯 الهدف: منع مستخدم قارئ الشاشة من إلغاء الخدمة برمجياً.
+                </div>
+            </div>
+
+            <!-- الإعاقة الحركية وأدوات الإدخال -->
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-3 text-emerald-400">
+                        <span class="p-1 bg-emerald-950/50 rounded">🦾</span>
+                        <h2 class="text-sm font-bold">2. استغلال العجز الحركي</h2>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        <strong>طريقة الاستغلال:</strong> حبس تركيز لوحة المفاتيح (Keyboard Trap) داخل إعلان مميز، أو وضع زر الخروج بمساحة (2px × 2px) خالية من أي فئة تركيز بصري، مما يمنع أجهزة تتبع العين (Eye-Trackers) والمفاتيح الحركية البديلة من رصدها.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-emerald-500">
+                    🎯 الهدف: إجبار مستخدم لوحة المفاتيح على الاستسلام للترقية.
+                </div>
+            </div>
+
+            <!-- الصعوبات الإدراكية والتوحد -->
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-3 text-amber-400">
+                        <span class="p-1 bg-amber-950/50 rounded">🧠</span>
+                        <h2 class="text-sm font-bold">3. استغلال صعوبات الإدراك</h2>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        <strong>طريقة الاستغلال:</strong> إطلاق ومضات حركية سريعة ومزعجة جداً (Sensory Overload) لإثارة القلق والتوفر الحسي لمرضى التوحد وعسر القراءة، مع جعل خيار الاستمرار بالباقة زراً هادئاً وثابتاً، فيضغط عليه المستخدم هرباً من النوبة البصرية.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-amber-500">
+                    🎯 الهدف: استغلال الهلع والانهيار الحسي لابتزاز الموافقة.
+                </div>
+            </div>
+
+            <!-- الصم وضعاف السمع -->
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-3 text-purple-400">
+                        <span class="p-1 bg-purple-950/50 rounded">👂</span>
+                        <h2 class="text-sm font-bold">4. استغلال الصم وضعاف السمع</h2>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        <strong>طريقة الاستغلال:</strong> إجبار المستخدم على إنهاء الحساب أو الباقة عن طريق الاتصال الهاتفي الصوتي الحصري بالدعم الفني (Call to Cancel)، دون تقديم بدائل نصية أو ترجمة لغة إشارة، مما يمنع الصم تماماً من إنهاء عقودهم بمفردهم.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-purple-500">
+                    🎯 الهدف: حجز المستخدمين الصم خلف حاجز تواصل مستحيل لتمديد فواتيرهم.
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم الثاني: لوحة المحاكاة التفاعلية لمختلف السيناريوهات الخبيثة -->
+        <section class="bg-slate-950 rounded-3xl border border-slate-800 p-6 md:p-8 shadow-2xl mb-10">
+            <div class="mb-6">
+                <span class="bg-rose-950 text-rose-400 border border-rose-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">لوحة المحاكاة التفاعلية الحية</span>
+                <h2 class="text-2xl font-extrabold mt-2 text-white">اختر سيناريو الاستغلال الذي ترغب بمعاينته وفهمه:</h2>
+                <p class="text-slate-400 text-xs mt-1">اضغط على التبويبات أدناه للتبديل بين أنواع الإعاقات، ولاحظ كيف يتصرف النظام الخادع برمجياً مقابل الممارسة العادلة والأخلاقية.</p>
+            </div>
+
+            <!-- أزرار التبويبات للتبديل بين السيناريوهات -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8">
+                <button onclick="switchTab('visual')" id="tab-visual" class="py-3 px-4 rounded-xl text-xs font-bold transition-all border bg-rose-950 border-rose-700 text-white">
+                    👁️‍🗨️ استغلال الإعاقة البصرية
+                </button>
+                <button onclick="switchTab('motor')" id="tab-motor" class="py-3 px-4 rounded-xl text-xs font-bold transition-all border bg-slate-900 border-slate-800 text-slate-400 hover:text-white">
+                    🦾 استغلال الإعاقة الحركية
+                </button>
+                <button onclick="switchTab('cognitive')" id="tab-cognitive" class="py-3 px-4 rounded-xl text-xs font-bold transition-all border bg-slate-900 border-slate-800 text-slate-400 hover:text-white">
+                    🧠 استغلال الصعوبات الإدراكية
+                </button>
+                <button onclick="switchTab('hearing')" id="tab-hearing" class="py-3 px-4 rounded-xl text-xs font-bold transition-all border bg-slate-900 border-slate-800 text-slate-400 hover:text-white">
+                    👂 استغلال الإعاقة السمعية
+                </button>
+            </div>
+
+            <!-- المحاكاة والمقارنة لكل سيناريو -->
+            <div id="sim-container" class="space-y-8">
+                
+                <!-- 1. سيناريو الإعاقة البصرية (Aria-Hidden & Label Deception) -->
+                <div id="panel-visual" class="space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        
+                        <!-- المحاكاة السيئة والخبيثة -->
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-rose-500/30 relative">
+                            <span class="absolute top-4 left-4 text-[10px] bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2.5 py-1 rounded font-bold">❌ استغلال خبيث لقارئ الشاشة</span>
+                            <h3 class="text-sm font-bold text-slate-200 mb-4 mt-2">نافذة مغادرة العضوية الممتازة</h3>
+                            
+                            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4">
+                                <h4 class="text-xs font-bold text-red-400">تحذير: هل تود إلغاء اشتراكك فعلياً؟</h4>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">ستفقد كافة ميزات التخزين السحابي والأمان الفوري فور مغادرتك للباقة!</p>
+                                
+                                <div class="flex flex-col gap-3 pt-2">
+                                    <!-- الزر المضيء الممتاز الموجه للترقية بوضوح -->
+                                    <button onclick="triggerVisualSim('bad-keep')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-4 rounded-xl text-xs shadow-lg transition">
+                                        أريد البقاء والحفاظ على أمان السحابة
+                                    </button>
+                                    
+                                    <!-- الخيار المظلم الخبيث: تم إخفاؤه برمجياً بالكامل من شجرة قارئ الشاشة بـ aria-hidden وتعديل الركائز! -->
+                                    <div aria-hidden="true" tabindex="-1" class="text-center">
+                                        <span onclick="triggerVisualSim('bad-cancel')" class="text-[9px] text-slate-600 hover:text-slate-400 cursor-pointer transition select-none">
+                                            إلغاء الاشتراك الآن ومسح كل بياناتي السحابية بشكل كلي
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-rose-400/90 leading-relaxed mt-4 bg-rose-950/20 p-2.5 rounded border border-rose-950">
+                                <b>🕵️‍♂️ كيف جرى التلاعب بالكفيف هنا؟</b> الخيار الصغير بالأسفل يحمل سمة <code>aria-hidden="true"</code>. هذا يعني أنه يختفي تماماً أمام قارئ الشاشة؛ الكفيف يسمع فقط زر "البقاء"، ويظن أن الصفحة مغلقة أو ليس بها خيار للإلغاء!
+                            </p>
+                        </div>
+
+                        <!-- الممارسة العادلة والصحيحة -->
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-emerald-500/30 relative">
+                            <span class="absolute top-4 left-4 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded font-bold">✅ ممارسة برمجية شريفة وعادلة</span>
+                            <h3 class="text-sm font-bold text-slate-200 mb-4 mt-2">إلغاء الاشتراك بشفافية تامة</h3>
+                            
+                            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4">
+                                <h4 class="text-xs font-bold text-slate-200">تأكيد طلب إلغاء الاشتراك</h4>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">نحن نحترم رغبتك. يمكنك البقاء في الباقة أو مغادرتها بكامل حريتك دون تضليل.</p>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                                    <button id="visual-good-keep" onclick="triggerVisualSim('good-keep')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2.5 px-4 rounded-xl text-xs border border-slate-700 transition">
+                                        الاحتفاظ بالاشتراك
+                                    </button>
+                                    <button id="visual-good-cancel" onclick="triggerVisualSim('good-cancel')" class="bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-800 font-bold py-2.5 px-4 rounded-xl text-xs transition">
+                                        إلغاء الاشتراك الآن
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-emerald-400/90 leading-relaxed mt-4 bg-emerald-950/20 p-2.5 rounded border border-emerald-950">
+                                <b>✨ لماذا ينجح هذا النموذج؟</b> تم تمثيل الخيارات بأزرار برمجية حقيقية <code>&lt;button&gt;</code> متكافئة التباين والفرز، ويستقبلها قارئ الشاشة ويعلن عنها بوضوح فائق للمكفوفين.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 2. سيناريو الإعاقة الحركية (Keyboard Trap & Microscopic Decline Target) -->
+                <div id="panel-motor" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        
+                        <!-- المحاكاة السيئة والخبيثة -->
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-rose-500/30 relative">
+                            <span class="absolute top-4 left-4 text-[10px] bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2.5 py-1 rounded font-bold">❌ مصيدة لوحة المفاتيح وتصغير الأهداف</span>
+                            <h3 class="text-sm font-bold text-slate-200 mb-4 mt-2">نافذة الترقية للباقة الفضية</h3>
+                            
+                            <div id="bad-motor-modal" class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4 relative">
+                                <h4 class="text-xs font-bold text-amber-500">مرحباً بك! لقد حصلت على ترقية مجانية لمدة أسبوع!</h4>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">لتنشيط الترقية، يُرجى الضغط على الزر الأخضر بالأسفل لبدء الاستمتاع.</p>
+                                
+                                <div class="flex flex-col gap-3 pt-2">
+                                    <!-- زر الترقية ضخم وممتص لكل الضغطات والتركيز التلقائي -->
+                                    <button id="bad-motor-accept" onclick="triggerMotorSim('bad-accept')" class="w-full bg-emerald-600 text-white font-bold py-3 px-4 rounded-xl text-xs transition">
+                                        تفعيل الترقية والبدء في الدفع لاحقاً
+                                    </button>
+                                    
+                                    <!-- زر الإلغاء تم تصغيره بشكل مجهري (2px X 2px) ووضعه بلا أي تركيز حركي! -->
+                                    <div class="flex justify-center items-center">
+                                        <button id="bad-motor-decline" onclick="triggerMotorSim('bad-decline')" tabindex="-1" class="text-[1px] bg-slate-950 text-slate-950 hover:bg-slate-900 hover:text-white" style="width: 3px; height: 3px; font-size: 1px; padding: 0;">
+                                            X
+                                        </button>
+                                        <span class="text-[9px] text-slate-600 font-light select-none">(زر الرفض بالأعلى مجهري تماماً ولا يمكن الضغط عليه بـ Tab)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-rose-400/90 leading-relaxed mt-4 bg-rose-950/20 p-2.5 rounded border border-rose-950">
+                                <b>🕵️‍♂️ كيف جرى التلاعب بالمقعد حركياً؟</b> تم عزل زر الإلغاء عبر منحه <code>tabindex="-1"</code> وتصغير حجمه بشكل مجهري. مستخدم أجهزة تتبع حركة العين (Eye-Trackers) لن يستطيع إطلاقاً تثبيت عينه على هدف بهذا الصغر، كما لا يمكن لمستخدم الكيبورد الحركي الوصول إليه؛ فيستسلم المستخدم لزر التفعيل الضخم!
+                            </p>
+                        </div>
+
+                        <!-- الممارسة العادلة والصحيحة -->
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-emerald-500/30 relative">
+                            <span class="absolute top-4 left-4 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded font-bold">✅ ممارسة عادلة للأجهزة المساعدة حركياً</span>
+                            <h3 class="text-sm font-bold text-slate-200 mb-4 mt-2">ترقية واضحة ومكفولة الخيارات حركياً</h3>
+                            
+                            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4">
+                                <h4 class="text-xs font-bold text-slate-200">ترقية الحساب للباقة الفضية</h4>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">الخيارات واضحة بالكامل وتفي بمتطلبات قانون فيتس (Fitts's Law) لتسهيل الرصد حركياً.</p>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                                    <button id="motor-good-accept" onclick="triggerMotorSim('good-accept')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition">
+                                        الترقية للفضية
+                                    </button>
+                                    <button id="motor-good-decline" onclick="triggerMotorSim('good-decline')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-3 px-4 rounded-xl text-xs transition border border-slate-700">
+                                        رفض الترقية مؤقتاً
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-emerald-400/90 leading-relaxed mt-4 bg-emerald-950/20 p-2.5 rounded border border-emerald-950">
+                                <b>✨ لماذا ينجح هذا النموذج؟</b> كلا الزرين بمساحة تزيد عن (44px × 44px) وهو المعيار العالمي الأدنى لضمان سهولة النقر لأجهزة تتبع العين وأطراف الأصابع المضطربة حركياً، مع تفعيل تصفح الكيبورد لجميع الخيارات.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 3. سيناريو الصعوبات الإدراكية والتوحد (Sensory Overload & Confirmshaming) -->
+                <div id="panel-cognitive" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        
+                        <!-- المحاكاة السيئة والخبيثة -->
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-rose-500/30 relative">
+                            <span class="absolute top-4 left-4 text-[10px] bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2.5 py-1 rounded font-bold">❌ هجوم حسي وابتزاز إدراكي</span>
+                            <h3 class="text-sm font-bold text-slate-200 mb-4 mt-2">شاشة تأكيد الخروج من الباقة</h3>
+                            
+                            <!-- هذه الحاوية سيتم تغيير فئتها برمجياً لإطلاق وميض حسّي مزعج عند الضغط على محاكاة الهجوم -->
+                            <div id="sensory-box" class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4 transition-all duration-300">
+                                <h4 class="text-xs font-bold text-red-500">🚨 تنبيه أمان فادح وخطير للغاية! 🚨</h4>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">
+                                    إذا أغلقت حسابك الآن، سنقوم فوراً بتبليغ السلطات ومسح هويتك السحابية وتعليق فواتيرك القديمة مع تطبيق غرامات مريبة! لا تدع فرصة الأمان تفوتك!
+                                </p>
+                                
+                                <div class="flex flex-col gap-3 pt-2">
+                                    <button onclick="triggerCognitiveSim('bad-keep')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-4 rounded-xl text-xs shadow-lg transition animate-pulse">
+                                        🟢 موافق، ألغوا الهجوم الحركي، أريد الاستمرار بأمان وهدوء!
+                                    </button>
+                                    
+                                    <!-- صياغة معقدة لنفي مزدوج تشتت مرضى عسر القراءة ومرضى فرط الحركة -->
+                                    <button onclick="triggerCognitiveSim('bad-cancel')" class="text-[10px] text-slate-500 hover:text-slate-400 underline transition bg-transparent border-0 py-1">
+                                        لا أريد عدم التأكيد على رغبتي في عدم الاستمرار في المغادرة
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex gap-2">
+                                <button onclick="simulateSensoryAttack(true)" class="bg-rose-950 border border-rose-700 hover:bg-rose-900 text-rose-300 text-[10px] font-bold py-1.5 px-3 rounded-lg transition-all">
+                                    ⚡ تشغيل ومحاكاة الهجوم الحسي المشتت لمرضى التوحد
+                                </button>
+                                <button onclick="simulateSensoryAttack(false)" class="bg-slate-800 text-slate-300 text-[10px] font-bold py-1.5 px-3 rounded-lg transition-all">
+                                    ⏸️ إيقاف
+                                </button>
+                            </div>
+                            <p class="text-[10px] text-rose-400/90 leading-relaxed mt-4 bg-rose-950/20 p-2.5 rounded border border-rose-950">
+                                <b>🕵️‍♂️ كيف ينهار مريض التوحد أو ADHD هنا؟</b> يتم استخدام ومضات عشوائية وضغط نفسي بعبارات مفزعة (Fear, Uncertainty, and Doubt) مع صياغة مزدوجة النفي تفوق القدرات الإدراكية السريعة. يضغط مريض التوحد على الزر الأخضر بشكل قهري لإيقاف الوميض الحركي الذي يؤلم جهازه العصبي الحسي!
+                            </p>
+                        </div>
+
+                        <!-- الممارسة العادلة والصحيحة -->
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-emerald-500/30 relative">
+                            <span class="absolute top-4 left-4 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded font-bold">✅ ممارسة إدراكية مهدئة ومفهومة</span>
+                            <h3 class="text-sm font-bold text-slate-200 mb-4 mt-2">إغلاق الحساب في بيئة مهدئة</h3>
+                            
+                            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4">
+                                <h4 class="text-xs font-bold text-slate-200">خطوات واضحة وبسيطة لإلغاء الاشتراك</h4>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">
+                                    العبارات واضحة ومباشرة، والواجهة هادئة وثابتة تماماً وخالية من الوميض لتجنب إثارة نوبات الصرع البصري أو الهلع الحسي.
+                                </p>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                                    <button id="cog-good-keep" onclick="triggerCognitiveSim('good-keep')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2.5 px-4 rounded-xl text-xs border border-slate-700 transition">
+                                        البقاء في الباقة
+                                    </button>
+                                    <button id="cog-good-cancel" onclick="triggerCognitiveSim('good-cancel')" class="bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-800 font-bold py-2.5 px-4 rounded-xl text-xs transition">
+                                        إلغاء الاشتراك
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-emerald-400/90 leading-relaxed mt-4 bg-emerald-950/20 p-2.5 rounded border border-emerald-950">
+                                <b>✨ لماذا ينجح هذا النموذج؟</b> يخلو تماماً من المشتتات والوميض الحركي، ويقدم صياغات مبسطة تناسب مستويات الاستيعاب القرائي والإدراكي لضمان حماية واحترام عقول كافة الزوار.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 4. سيناريو الإعاقة السمعية (Audio-Only Cancellation Barriers) -->
+                <div id="panel-hearing" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        
+                        <!-- المحاكاة السيئة والخبيثة -->
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-rose-500/30 relative">
+                            <span class="absolute top-4 left-4 text-[10px] bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2.5 py-1 rounded font-bold">❌ حاجز صوتي إجباري (إقصاء الصم)</span>
+                            <h3 class="text-sm font-bold text-slate-200 mb-4 mt-2">بوابة مغادرة عضوية النادي الرياضي</h3>
+                            
+                            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4">
+                                <h4 class="text-xs font-bold text-slate-200">هل تود إلغاء عضويتك السنوية؟</h4>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">
+                                    حمايةً لبياناتك الشخصية، **يُمنع الإلغاء عبر الموقع نهائياً**. يجب عليك إجراء مكالمة هاتفية صوتية حصرية بقسم الاشتراكات على الرقم الموحد لتأكيد الهوية.
+                                </p>
+                                
+                                <div class="bg-rose-950/30 border border-rose-800/40 p-3 rounded-lg text-[10px] text-rose-300 text-right space-y-1">
+                                    <p class="font-bold">❌ شروط الإلغاء الصوتي الصارمة:</p>
+                                    <ul class="list-disc list-inside space-y-0.5 text-slate-400">
+                                        <li>لا تُقبل رسائل البريد الإلكتروني أو المحادثات النصية للخصوصية.</li>
+                                        <li>يجب التحدث صوتياً وتأكيد البيانات مع موظف خدمة العملاء شفهياً.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button onclick="triggerHearingSim('bad-block')" class="w-full bg-rose-950 border border-rose-800 hover:bg-rose-900 text-rose-300 font-bold py-3 px-4 rounded-xl text-xs transition">
+                                    📞 الاتصال الصوتي الحصري بالدعم الفني (خيار الإلغاء الوحيد)
+                                </button>
+                            </div>
+                            <p class="text-[10px] text-rose-400/90 leading-relaxed mt-4 bg-rose-950/20 p-2.5 rounded border border-rose-950">
+                                <b>🕵️‍♂️ كيف يُستغل الأصم هنا؟</b> يواجه الشخص الأصم أو الأبكم حاجزاً تواصلّياً لا يمكنه تجاوزه بمفرده. هذا الإقصاء المتعمد يرغم المستخدم الأصم على الاستسلام واستمرار اقتطاع الفواتير الشهرية من بطاقته لصعوبة إجراء المكالمة الشفهية!
+                            </p>
+                        </div>
+
+                        <!-- الممارسة العادلة والصحيحة -->
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-emerald-500/30 relative">
+                            <span class="absolute top-4 left-4 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded font-bold">✅ قنوات متعددة وعادلة (صم ومبصرين)</span>
+                            <h3 class="text-sm font-bold text-slate-200 mb-4 mt-2">إلغاء الاشتراك بقنوات تواصل مرنة</h3>
+                            
+                            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 text-center space-y-4">
+                                <h4 class="text-xs font-bold text-slate-200">خيارات متنوعة لإلغاء العضوية والاشتراك</h4>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">
+                                    يمكنك مغادرتنا بالطريقة التي تناسب قدراتك الخاصة في أي وقت وبكل سلاسة وأمان.
+                                </p>
+                                
+                                <div class="grid grid-cols-1 gap-2 pt-2">
+                                    <!-- قناة نصية متكاملة لضعاف السمع والصم -->
+                                    <button onclick="triggerHearingSim('good-chat')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2.5 px-4 rounded-xl text-xs border border-slate-700 transition flex items-center justify-center gap-2">
+                                        💬 إلغاء الاشتراك عبر المحادثة النصية الفورية (Live Chat)
+                                    </button>
+                                    
+                                    <!-- معالجة إلكترونية فورية بنقرة واحدة -->
+                                    <button onclick="triggerHearingSim('good-direct')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                                        ⚡ تأكيد الإلغاء الإلكتروني الفوري بضغطة واحدة
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-emerald-400/90 leading-relaxed mt-4 bg-emerald-950/20 p-2.5 rounded border border-emerald-950">
+                                <b>✨ لماذا ينجح هذا النموذج؟</b> يوفر قنوات متعددة للتحقق (Multimodal Interaction) بما يحترم الفئات التي تعاني من حواجز التواصل السمعي أو الشفهي وفق المعيار العالمي للإتاحة الشاملة.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- القسم الثالث: متتبع قارئ الشاشة والأجهزة المساعدة (System Console Log) -->
+        <section class="bg-slate-950 rounded-3xl p-6 sm:p-8 text-white shadow-xl mb-10 border border-slate-800">
+            <h3 class="text-base font-bold text-rose-400 mb-4 flex items-center gap-2">
+                <span class="w-3 h-3 bg-rose-500 rounded-full animate-ping"></span>
+                شاشة رصد استغلال التقنيات المساعدة (Assistive Technology Live Log)
+            </h3>
+            <p class="text-slate-400 text-xs mb-6">
+                انقر على الخيارات في المحاكيات أعلاه لتشاهد في هذا السجل كيف تستشعر التقنيات المساعدة الحواجز والممارسات الخادعة وكيف تؤثر على ذوي الإعاقة:
+            </p>
+
+            <div class="bg-black/60 rounded-2xl p-6 font-mono text-sm min-h-[160px] border border-slate-800 flex flex-col justify-between">
+                <div id="simLog" class="space-y-1.5 text-xs text-slate-300">
+                    <div class="text-slate-500">// قم بالتفاعل بالأعلى أو الانتقال بـ Tab لمراقبة رصد الأجهزة المساعدة...</div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-[10px] text-slate-400">
+                    <span>* يتم محاكاة صوت قارئ الشاشة عند تحديد التفعيل بالأعلى.</span>
+                    <button onclick="clearSimLog()" class="text-rose-400 hover:text-rose-300 underline font-semibold">تفريغ السجل</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم الرابع: الشرح البرمجي للمطورين -->
+        <section class="bg-slate-950 p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-800">
+            <h2 class="text-xl font-bold text-white mb-2">الشرح والتحليل البرمجي للوقاية من تلاعب ذوي الإعاقة</h2>
+            <p class="text-slate-400 text-xs mb-6">كيف يتلاعب المطورون غير الأخلاقيين بالأجهزة المساعدة؟ وكيف يمكننا كتابة أكواد نزيهة؟</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- كود النمط المظلم الخادع -->
+                <div>
+                    <h3 class="text-sm font-bold text-rose-400 mb-2">❌ الأكواد البرمجية المستغلة والتلاعب بالتقنيات</h3>
+                    <p class="text-xs text-slate-500 mb-3">حجب الإلغاء عن شجرة الـ DOM، وحظر التنقل بـ لوحة المفاتيح لإجبار المستخدم.</p>
+                    <pre class="bg-black text-rose-300 p-4 rounded-xl text-xs overflow-x-auto font-mono border border-rose-950"><code>&lt;!-- تلاعب خبيث بحجب الخيارات عن المكفوفين --&gt;
+&lt;div class="newsletter-popup"&gt;
+  &lt;button class="keep-btn"&gt;البقاء بالخدمة&lt;/button&gt;
+  
+  &lt;!-- تم استخدام aria-hidden لتعمية قارئ الشاشة --&gt;
+  &lt;!-- واستخدام tabindex="-1" لمنع لوحة المفاتيح --&gt;
+  &lt;span class="decline" 
+        aria-hidden="true" 
+        tabindex="-1" 
+        onclick="cancel()"&gt;
+     إلغاء الباقة
+  &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <!-- كود الممارسة السليمة والأخلاقية -->
+                <div>
+                    <h3 class="text-sm font-bold text-emerald-400 mb-2">✅ الأكواد الأخلاقية والمتكاملة لسهولة الوصول</h3>
+                    <p class="text-xs text-slate-500 mb-3">دعم كامل لجميع الفئات عبر وسوم دلالية وعناصر متكافئة تلبي معايير WCAG العالمية.</p>
+                    <pre class="bg-black text-emerald-300 p-4 rounded-xl text-xs overflow-x-auto font-mono border border-emerald-950"><code>&lt;!-- إتاحة الخيارات برمز دلالي متكافئ تماماً --&gt;
+&lt;div class="modal" role="dialog" aria-labelledby="title"&gt;
+  &lt;h2 id="title"&gt;خيارات الترقية والاشتراك&lt;/h2&gt;
+  
+  &lt;div class="action-buttons"&gt;
+    &lt;!-- خيارات بأحجام وأزرار حقيقية ومتاحة للكل --&gt;
+    &lt;button class="btn btn-primary"&gt;تفعيل الباقة&lt;/button&gt;
+    &lt;button class="btn btn-secondary"&gt;رفض الترقية&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-500 py-6 text-center border-t border-slate-800 text-xs">
+        <p>تم التطوير كأداة توضيحية متكاملة لبيان الأنماط المظلمة الخبيثة التي تستهدف حرمان ذوي الإعاقة من سهولة الوصول الرقمي (Anti-Accessibility Dark Patterns).</p>
+    </footer>
+
+
+    <!-- ==================== منطق جافا سكريبت لتأدية المحاكاة التفاعلية ==================== -->
+    <script>
+        let activeTab = 'visual';
+
+        // دالة التنقل بين التبويبات لمختلف الإعاقات
+        function switchTab(tabId) {
+            // إخفاء جميع اللوحات أولاً
+            document.getElementById('panel-visual').classList.add('hidden');
+            document.getElementById('panel-motor').classList.add('hidden');
+            document.getElementById('panel-cognitive').classList.add('hidden');
+            document.getElementById('panel-hearing').classList.add('hidden');
+
+            // إزالة فئات التنشيط من جميع أزرار التبويبات
+            const tabs = ['visual', 'motor', 'cognitive', 'hearing'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                btn.className = 'py-3 px-4 rounded-xl text-xs font-bold transition-all border bg-slate-900 border-slate-800 text-slate-400 hover:text-white';
+            });
+
+            // إيقاف الوميض الحسي تلقائياً عند تغيير التبويب
+            simulateSensoryAttack(false);
+
+            // تفعيل اللوحة المحددة وزرها
+            document.getElementById(`panel-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).className = 'py-3 px-4 rounded-xl text-xs font-bold transition-all border bg-rose-950 border-rose-700 text-white';
+            
+            activeTab = tabId;
+            appendSimLog(`📁 انتقل المعلم إلى تبويب محاكاة: [${getTabNameArabic(tabId)}] لبيان نمط الاستغلال المستهدف.`);
+            speakSimulatedVoice(`تم التبديل إلى لوحة محاكاة استغلال ${getTabNameArabic(tabId)}`);
+        }
+
+        function getTabNameArabic(tabId) {
+            switch(tabId) {
+                case 'visual': return 'الإعاقة البصرية ومستخدمي قارئ الشاشة';
+                case 'motor': return 'الإعاقة الحركية وأجهزة تتبع العين';
+                case 'cognitive': return 'الصعوبات الإدراكية وفرط الحركة والتوحد';
+                case 'hearing': return 'الإعاقة السمعية والصم وضعاف السمع';
+                default: return '';
+            }
+        }
+
+        // دالة للنطق الصوتي لمحاكاة قارئ الشاشة باللغة العربية
+        function speakSimulatedVoice(text) {
+            const isVoiceEnabled = document.getElementById('voiceToggle').checked;
+            if (!isVoiceEnabled) return;
+
+            window.speechSynthesis.cancel(); // إيقاف النطق الحالي لتفادي التداخل
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // تسجيل البيانات في السجل التفاعلي
+        function appendSimLog(message, isWarning = false) {
+            const logContainer = document.getElementById('simLog');
+            
+            if (logContainer.innerHTML.includes('// قم بالتفاعل')) {
+                logContainer.innerHTML = '';
+            }
+
+            const time = new Date().toLocaleTimeString('ar-EG', { hour12: false });
+            const div = document.createElement('div');
+            
+            if (isWarning) {
+                div.className = 'text-rose-400 border-r-2 border-rose-500 pr-2 py-1';
+            } else {
+                div.className = 'text-sky-400 border-r-2 border-sky-500 pr-2 py-1';
+            }
+            
+            div.innerHTML = `<span class="text-slate-600">[${time}]</span> ${message}`;
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // تفريغ السجل
+        function clearSimLog() {
+            document.getElementById('simLog').innerHTML = `<div class="text-slate-500">// قم بالتفاعل بالأعلى أو الانتقال بـ Tab لمراقبة رصد الأجهزة المساعدة...</div>`;
+        }
+
+
+        /* ==================== محاكاة ومعالجة تفاعلات الإعاقة البصرية ==================== */
+        function triggerVisualSim(action) {
+            if (action === 'bad-keep') {
+                appendSimLog("🟢 مستخدم قارئ الشاشة ينقر على زر البقاء الواضح والوحيد أمامه برمجياً.", false);
+                appendSimLog("🔊 [قارئ الشاشة يعلن]: 'زر: أريد البقاء والحفاظ على أمان السحابة.'", false);
+                speakSimulatedVoice("أريد البقاء والحفاظ على أمان السحابة");
+            } 
+            else if (action === 'bad-cancel') {
+                // الكارثة: هذا العنصر مخفي عن الكفيف، نقره تم بالماوس فقط من قبل شخص مبصر يعاين المشكلة!
+                appendSimLog("🚨 [خرق أخلاقي جسيم]: المبصر نقر خيار الإلغاء بالماوس. الكفيف محروم كلياً منه لأنه غير منطوق ولا تصله لوحة المفاتيح!", true);
+                appendSimLog("🔊 [قارئ الشاشة صامت تماماً]: لا يوجد إعلان عن خيار الإلغاء، العنصر محمي بـ aria-hidden='true'!", true);
+                speakSimulatedVoice("تحذير عائق وصول: هذا العنصر مخفي بالكامل برمجياً عن قارئ الشاشة");
+            } 
+            else if (action === 'good-keep') {
+                appendSimLog("🟢 نقر المستخدم على زر الاحتفاظ بالاشتراك الأخلاقي والشريف.");
+                appendSimLog("🔊 [قارئ الشاشة يعلن بوضوح]: 'زر، الاحتفاظ بالاشتراك.'");
+                speakSimulatedVoice("الاحتفاظ بالاشتراك");
+            } 
+            else if (action === 'good-cancel') {
+                appendSimLog("🏆 [انتصار الشفافية والإتاحة]: تم رصد زر الإلغاء البرمجي المتكافئ ونقره بنجاح من مستخدم قارئ الشاشة.");
+                appendSimLog("🔊 [قارئ الشاشة يعلن بصوت صريح]: 'زر، إلغاء الاشتراك الآن.'");
+                speakSimulatedVoice("إلغاء الاشتراك الآن");
+            }
+        }
+
+
+        /* ==================== محاكاة ومعالجة تفاعلات الإعاقة الحركية ==================== */
+        function triggerMotorSim(action) {
+            if (action === 'bad-accept') {
+                appendSimLog("🟢 تفعيل الترقية عبر الزر الضخم الذي يمتص كافة نقرات تتبع العين واليد الحركية بسهولة.", false);
+                speakSimulatedVoice("تفعيل الترقية والبدء في الدفع لاحقاً");
+            } 
+            else if (action === 'bad-decline') {
+                appendSimLog("🚨 [تحذير واجهة مستخدم مجهرية]: نقر زر الإلغاء المجهري صعب للغاية حركياً! تتبع العين يفشل، والـ Focus بلوحة المفاتيح مستحيل!", true);
+                speakSimulatedVoice("تحذير: زر الرفض مجهري ويستحيل استهدافه للتحكم الحركي وتتبع العين");
+            } 
+            else if (action === 'good-accept') {
+                appendSimLog("🟢 نقر زر الترقية للفضية المتكافئ الحجم.");
+                speakSimulatedVoice("الترقية للفضية");
+            } 
+            else if (action === 'good-decline') {
+                appendSimLog("🏆 [ممارسة سليمة]: تم نقر زر الرفض العادل بسهولة بالغة بواسطة تتبع العين واللوحة الحركية نظراً لحجمه المتوافق.");
+                speakSimulatedVoice("رفض الترقية مؤقتاً");
+            }
+        }
+
+
+        /* ==================== محاكاة ومعالجة تفاعلات الصعوبات الإدراكية والتوحد ==================== */
+        function simulateSensoryAttack(activate) {
+            const sensoryBox = document.getElementById('sensory-box');
+            if (activate) {
+                sensoryBox.classList.add('sensory-attack');
+                appendSimLog("🚨 [إطلاق الهجوم الحسي الخبيث]: واجهة تومض وتتبدل ألوانها بعنف، مستهدفة إثارة القلق والتوتر الحسي لمرضى التوحد والصرع البصري للتلاعب بهم!", true);
+                speakSimulatedVoice("تحذير، وميض بصري حسي مكثف ومزعج للجهاز العصبي، يُرجى إيقافه فوراً");
+            } else {
+                sensoryBox.classList.remove('sensory-attack');
+                appendSimLog("🟢 تم إيقاف تأثير الوميض والعودة للحالة الهادئة المستقرة.");
+                speakSimulatedVoice("تم إيقاف الوميض البصري");
+            }
+        }
+
+        function triggerCognitiveSim(action) {
+            if (action === 'bad-keep') {
+                appendSimLog("🟢 ضغط المستخدم على زر البقاء القسري لإيقاف الوميض والهروب من نوبة القلق والهلع البصري والعبارات المهددة.", false);
+                speakSimulatedVoice("تم البقاء للباقة وإلغاء الوميض");
+                simulateSensoryAttack(false); // كف الهجوم الحسي بموافقتهم القسرية!
+            } 
+            else if (action === 'bad-cancel') {
+                appendSimLog("🚨 [استغلال عسر القراءة]: العبارة 'لا أريد عدم التأكيد على عدم المغادرة' مضللة ومبهمة ذهنياً وتجبر المريض على النقر بشكل خاطئ!", true);
+                speakSimulatedVoice("عبارة نفي مزدوج معقدة تفوق حدود الاستيعاب السريع");
+            } 
+            else if (action === 'good-keep') {
+                appendSimLog("🟢 اختيار البقاء في الباقة ببيئة هادئة وقرار مستنير.");
+                speakSimulatedVoice("البقاء في الباقة");
+            } 
+            else if (action === 'good-cancel') {
+                appendSimLog("🏆 [قرار نزيه]: تم اتخاذ خيار إلغاء الاشتراك بهدوء ووضوح كاملين دون هجمات أو صياغات ملتفة.");
+                speakSimulatedVoice("إلغاء الاشتراك");
+            }
+        }
+
+
+        /* ==================== محاكاة ومعالجة تفاعلات الإعاقة السمعية ==================== */
+        function triggerHearingSim(action) {
+            if (action === 'bad-block') {
+                appendSimLog("🚨 [حاجز تواصل مستبعد للصم]: النظام يلزم المستخدم بالاتصال الهاتفي الصوتي. مستخدم أصم أو ضعيف سمع لن يتمكن من إجراء هذه المكالمة بمفرده كلياً!", true);
+                speakSimulatedVoice("حاجز إعاقة سمعية: الإلغاء عبر الهاتف يستبعد مستخدمي لغة الإشارة والصم بالكامل");
+            } 
+            else if (action === 'good-chat') {
+                appendSimLog("🏆 [قناة متكاملة عادلة]: تفعيل المحادثة النصية الفورية (Text-based Live Chat) لإلغاء الباقة، مما يمنح الأصم استقلالية تامة في إنهاء حسابه.", false);
+                speakSimulatedVoice("فتح المحادثة النصية الفورية لإلغاء الاشتراك بمرونة كاملة");
+            } 
+            else if (action === 'good-direct') {
+                appendSimLog("🏆 [معالجة إلكترونية عادلة]: نقر الإلغاء الإلكتروني المباشر دون فرض أي حواجز سمعية أو شفهية ملتوية.");
+                speakSimulatedVoice("تأكيد الإلغاء الإلكتروني الفوري بنجاح");
+            }
+        }
+
+        // تتبع وضبط تصفح الـ Focus لبيان الإقصاء الحركي للجمهور عند الضغط على Tab
+        document.addEventListener('focusin', function(e) {
+            const target = e.target;
+            let label = target.tagName.toLowerCase();
+            
+            if (target.id) label += `#${target.id}`;
+            if (target.innerText) {
+                label += ` ("${target.innerText.substring(0, 20)}...")`;
+            }
+
+            appendSimLog(`⌨️ [مسار لوحة المفاتيح]: مؤشر الـ Focus يستقر على: ${label}`, false);
+        });
+    </script>
+</body>
+</html>
