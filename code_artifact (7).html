@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سهولة الوصول الرقمي: الحدود الزمنية وانتهاء الجلسات</title>
+    <!-- Tailwind CSS للتصميم -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- خطوط جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* مؤشر التركيز البصري المخصص للتصفح بلوحة المفاتيح */
+        :focus {
+            outline: 4px solid #f59e0b !important;
+            outline-offset: 3px !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- شريط التنقل العلوي -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-45 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-amber-100 text-amber-600 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-950">الحدود الزمنية وانتهاء الجلسة (Time Limits)</h1>
+                    <p class="text-xs text-slate-500">الدرس السادس: منح المستخدمين الوقت الكافي والمتحكم به لإتمام المهام</p>
+                </div>
+            </div>
+            
+            <!-- أداة تفعيل نطق الصوت لمحاكاة قارئ الشاشة -->
+            <div class="flex items-center gap-2 bg-amber-50 px-3 py-2 rounded-lg border border-amber-100">
+                <label for="voiceToggle" class="text-sm font-semibold text-amber-950 cursor-pointer select-none">
+                    🔊 تفعيل نطق محاكاة قارئ الشاشة
+                </label>
+                <input type="checkbox" id="voiceToggle" checked class="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500 cursor-pointer">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+        
+        <!-- القسم الأول: لوحة المفاهيم والمشكلة بناءً على الصورة المرفقة بالترتيب -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <!-- كرت المشكلة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-rose-600">
+                        <span class="p-1.5 bg-rose-50 rounded-lg">⏰</span>
+                        <h2 class="text-lg font-bold">1. المشكلة: الخروج المفاجئ</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        تقوم بعض المواقع الإلكترونية والخدمات المصرفية بتسجيل خروج المستخدمين تلقائياً لحماية الأمان دون مراعاة سرعة إدخال البيانات:
+                    </p>
+                    <ul class="space-y-2 text-slate-600 text-xs list-disc list-inside mb-4">
+                        <li><b>ضياع مجهود الإدخال:</b> عند انتهاء صلاحية الجلسة فجأة، يفقد المستخدم كل البيانات الحساسة التي قام بملئها في النماذج الطويلة.</li>
+                        <li><b>عدم وجود تحذير مسبق:</b> يخرج النظام المستخدم بقرار مفاجئ وصامت دون منحه خيار طلب تمديد الوقت.</li>
+                    </ul>
+                </div>
+                <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg text-[11px] text-rose-800">
+                    <strong>مثال خاطئ بالصورة:</strong> انتهاء صلاحية الجلسة وتوقفها بعد 5 دقائق تماماً دون إصدار أي تنبيه مرئي أو مسموع للمستخدم.
+                </div>
+            </div>
+
+            <!-- كرت الفئات المتأثرة بالمشكلة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-amber-600">
+                        <span class="p-1.5 bg-amber-50 rounded-lg">♿</span>
+                        <h2 class="text-lg font-bold">من يتأثر بهذا العائق؟</h2>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                        تحديد الوقت بشكل صارم ومباغت يؤثر بشكل مباشر وعنيف على الفئات التالية:
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-amber-50/50 p-2 rounded-xl border border-amber-100">
+                            <h3 class="text-xs font-bold text-amber-900">👴 كبار السن (Older Adults):</h3>
+                            <p class="text-[11px] text-slate-600 mt-0.5">قد يواجهون صعوبة في الكتابة السريعة أو يحتاجون وقتاً أكبر لمراجعة الحقول وقراءتها بتمهل.</p>
+                        </div>
+                        <div class="bg-blue-50/50 p-2 rounded-xl border border-blue-100">
+                            <h3 class="text-xs font-bold text-blue-900">🧠 ذوو الصعوبات الإدراكية:</h3>
+                            <p class="text-[11px] text-slate-600 mt-0.5">الذين يحتاجون لقراءة الإرشادات بتركيز مكرر دون ضغوط عامل الوقت المتسارع.</p>
+                        </div>
+                        <div class="bg-purple-50/50 p-2 rounded-xl border border-purple-100">
+                            <h3 class="text-xs font-bold text-purple-900">🖥️ مستخدمو التقنيات المساعدة:</h3>
+                            <p class="text-[11px] text-slate-600 mt-0.5">مستخدمو قارئات الشاشة والتحكم بالصوت يستغرقون وقتاً أطول للتنقل بين الحقول وتعبئتها حركياً.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كرت الممارسة السليمة والمبدأ التوجيهي -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-emerald-600">
+                        <span class="p-1.5 bg-emerald-50 rounded-lg">✨</span>
+                        <h2 class="text-lg font-bold">الممارسة السليمة والحل</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        تنص معايير الإتاحة العالمية على <b>منح المستخدمين الوقت الكافي لإكمال المهام</b> عبر توفير الخصائص التالية:
+                    </p>
+                    <div class="space-y-2 text-xs text-slate-600">
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>ظهور نافذة تنبيه:</b> إبراز رسالة تحذير واضحة تفيد بقرب انتهاء الوقت (مثال: "ستنتهي جلستك خلال دقيقتين").</span>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>خيار تمديد الوقت:</b> توفير زر مباشر لطلب تمديد الجلسة بنقرة واحدة والحفاظ على البيانات.</span>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>التحكم المرن:</b> إمكانية تعطيل المؤقت تماماً أو تخصيص مدة أطول للجلسة من البداية.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs mt-4">
+                    <strong class="block text-amber-300 mb-1">🎯 المبدأ التوجيهي الرئيسي:</strong>
+                    "يجب أن يملك المستخدم السيطرة والقدرة الكاملة على تمديد الوقت لإنهاء مهامه بأريحية وأمان بوجب المعيار WCAG 2.2.1."
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الثاني: العرض والمقارنة العملية الحية ومحاكاة المؤقت -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            
+            <!-- العمود الأيمن: محاكاة انتهاء الوقت الخاطئ (Bad Example) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-rose-200 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-rose-50 text-rose-600 text-xs font-bold px-3 py-1 rounded">❌ ممارسة خاطئة ومقلقة</span>
+                        <span class="text-xs text-slate-400 font-mono">No Warning Timeout</span>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold mb-2 text-slate-900">بوابة الدفع وبطاقات الائتمان</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        في هذا النموذج، يبدأ مستخدم كفيف أو كبير في السن بإدخال رقم بطاقته الطويل وحساباته المصرفية بدقة بالغة وبطء تام. سينتهي الوقت فجأة دون تلميح مسبق!
+                    </p>
+
+                    <!-- محاكي تعبئة البيانات مسبقاً للتجربة البصرية -->
+                    <div id="badFormContainer" class="space-y-4 border border-slate-100 p-4 rounded-2xl bg-slate-50 relative">
+                        <div class="flex justify-between items-center bg-rose-50 p-2 rounded-lg text-rose-800 text-xs font-semibold mb-2">
+                            <span>🕒 وقت الجلسة الإجمالي للمحاكاة:</span>
+                            <span id="badTimerValue" class="font-mono text-sm">10 ثوانٍ</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 mb-1">اسم حامل البطاقة:</label>
+                            <input type="text" value="أحمد عبد الله الحربي" disabled class="w-full bg-slate-200 text-slate-500 rounded-lg px-3 py-2 text-xs cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 mb-1">رقم بطاقة الائتمان (16 خانة):</label>
+                            <input id="badCardInput" type="text" placeholder="#### #### #### ####" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-rose-500">
+                        </div>
+                    </div>
+
+                    <!-- شاشة الخروج المفاجئ المزعجة والمبهمة -->
+                    <div id="badLoggedOutScreen" class="hidden absolute inset-0 bg-slate-900/95 text-white flex flex-col items-center justify-center p-6 text-center z-20">
+                        <span class="text-4xl mb-2">⛔</span>
+                        <h4 class="text-base font-bold text-rose-400 mb-1">انتهت صلاحية الجلسة!</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed max-w-xs">
+                            تم تسجيل خروجك تلقائياً وفقدت كافة البيانات التي قمت بإدخالها بسبب انتهاء الوقت المسموح (5 دقائق).
+                        </p>
+                        <button onclick="resetBadDemo()" class="mt-4 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all">إعادة بدء التجربة</button>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <button id="startBadBtn" onclick="startBadSimulation()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-xl transition duration-150">
+                        🚀 تشغيل محاكاة الجلسة السيئة (بدون إنذار)
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- العمود الأيسر: محاكاة الجلسة المتاحة والصحيحة (Good Example) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-emerald-200 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded">✅ ممارسة سليمة (متاحة تماماً)</span>
+                        <span class="text-xs text-slate-400 font-mono">Accessible Session Control</span>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-2 text-slate-900">بوابة الدفع والبطاقات الآمنة والولوجة</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        قبل انتهاء الوقت المحدد بنصف المدة، يقوم النظام بفتح نافذة منبثقة تفاعلية تعلن بالصوت والصورة عن قرب انتهاء الجلسة، مع منح المستخدم خياراً سهلاً للتمديد.
+                    </p>
+
+                    <!-- محاكي تعبئة البيانات السليم -->
+                    <div id="goodFormContainer" class="space-y-4 border border-slate-100 p-4 rounded-2xl bg-slate-50 relative">
+                        <div class="flex justify-between items-center bg-emerald-50 p-2 rounded-lg text-emerald-800 text-xs font-semibold mb-2">
+                            <span>🕒 وقت الجلسة الإجمالي للمحاكاة:</span>
+                            <span id="goodTimerValue" class="font-mono text-sm">10 ثوانٍ</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 mb-1">اسم حامل البطاقة:</label>
+                            <input type="text" value="أحمد عبد الله الحربي" disabled class="w-full bg-slate-200 text-slate-500 rounded-lg px-3 py-2 text-xs cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 mb-1">رقم بطاقة الائتمان (16 خانة):</label>
+                            <input id="goodCardInput" type="text" placeholder="#### #### #### ####" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-emerald-500">
+                        </div>
+                    </div>
+
+                    <!-- شاشة انتهاء الوقت الطبيعي في حال الرفض أو عدم التمديد -->
+                    <div id="goodLoggedOutScreen" class="hidden absolute inset-0 bg-slate-900/95 text-white flex flex-col items-center justify-center p-6 text-center z-20">
+                        <span class="text-4xl mb-2">🚪</span>
+                        <h4 class="text-base font-bold text-slate-300 mb-1">تم تسجيل خروجك بأمان</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed max-w-xs">
+                            انتهى الوقت وتم حفظ بياناتك بشكل آمن دون تسريبها، يمكنك العودة وتسجيل الدخول متى شئت.
+                        </p>
+                        <button onclick="resetGoodDemo()" class="mt-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all">إعادة بدء التجربة</button>
+                    </div>
+
+                    <!-- نافذة التحذير المنبثقة التفاعلية المتاحة (تظهر كتحذير قبل الانتهاء) -->
+                    <div id="accessibleWarningModal" class="hidden absolute inset-x-4 top-1/2 -translate-y-1/2 bg-white rounded-2xl p-5 shadow-2xl border border-amber-300 z-30 text-right animate-bounce">
+                        <div class="flex items-center gap-2 text-amber-600 mb-2">
+                            <span class="text-xl">⚠️</span>
+                            <h4 id="modalTitle" class="font-bold text-sm">تنبيه: ستنتهي صلاحية جلستك قريباً!</h4>
+                        </div>
+                        <p id="modalDesc" class="text-slate-600 text-xs leading-relaxed mb-4">
+                            حفاظاً على أمان بياناتك، ستنتهي جلستك خلال <span class="font-bold text-amber-600">2 دقيقة</span> (محاكاة: 5 ثوانٍ متبقية). هل ترغب في تمديد الجلسة؟
+                        </p>
+                        <div class="flex gap-2 justify-end">
+                            <!-- أزرار تمديد وإغلاق صريحة ومتاحة للوحة المفاتيح وقارئ الشاشة -->
+                            <button id="extendSessionBtn" onclick="extendSession()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] font-bold px-4 py-2 rounded-lg transition-all">
+                                نعم، تمديد الوقت
+                            </button>
+                            <button id="logoutSessionBtn" onclick="terminateSessionEarly()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 text-[11px] font-bold px-3 py-2 rounded-lg transition-all">
+                                تسجيل الخروج الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <button id="startGoodBtn" onclick="startGoodSimulation()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl transition duration-150">
+                        🚀 تشغيل محاكاة الجلسة الصحيحة (مع التنبيه والتمديد)
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- القسم الثالث: متتبع قارئ الشاشة التفاعلي المباشر (Screen Reader Voice Sim) -->
+        <section class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl mb-10">
+            <h3 class="text-base font-bold text-amber-400 mb-4 flex items-center gap-2">
+                <span class="w-3 h-3 bg-amber-400 rounded-full animate-pulse"></span>
+                شاشة المطورين والمحاكاة التفاعلية (Live Screen Reader Voice Sim)
+            </h3>
+            <p class="text-slate-400 text-xs mb-6">
+                شاهد واستمع إلى ما تنطق به التقنيات المساعدة للمستخدم الكفيف في اللحظات الحرجة لانتهاء وقت الاستمارة:
+            </p>
+
+            <div class="bg-black/60 rounded-2xl p-6 font-mono text-sm min-h-[140px] border border-slate-800 flex flex-col justify-between">
+                <div id="simLog" class="space-y-1 text-xs text-slate-300">
+                    <div class="text-slate-500">// اضغط على أحد أزرار المحاكاة في الأعلى لبدء متابعة خط سير تصفح الكفيف...</div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-[10px] text-slate-400">
+                    <span>* يتم نطق العبارات صوتياً باللغة العربية عبر محرك التركيب الصوتي للمتصفح عند تفعيل النطق الصوتي بالأعلى.</span>
+                    <button onclick="clearSimLog()" class="text-amber-400 hover:text-amber-300 underline font-semibold">تفريغ السجل</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الرابع: الكود البرمجي للمطورين -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">الشرح البرمجي للمطورين</h2>
+            <p class="text-slate-500 text-xs mb-6">كيف يمكننا برمجة مؤقتات تفاعلية مريحة ومتاحة لجميع الأدوات المساعدة؟</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- الـ Javascript الخاطئ والمليء بالعوائق -->
+                <div>
+                    <h3 class="text-sm font-bold text-rose-600 mb-2">❌ الكود الصامت والمفاجئ (الخاطئ)</h3>
+                    <p class="text-xs text-slate-500 mb-3">تسجيل خروج المستخدم فجأة دون إشعاره، مما يؤدي لمسح البيانات عشوائياً.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>// كود صامت تماماً يفاجئ الكفيف بموت الجلسة فجأة
+setTimeout(function() {
+  // انتهاء الخمس دقائق ومسح البيانات
+  logoutUser(); 
+  showLoggedOutScreen(); 
+}, 300000); // 5 دقائق صامتة تماماً</code></pre>
+                </div>
+
+                <!-- الـ Javascript الصحيح والمطابق للمعايير -->
+                <div>
+                    <h3 class="text-sm font-bold text-emerald-600 mb-2">✅ كود التحذير وإدارة التركيز (الصحيح)</h3>
+                    <p class="text-xs text-slate-500 mb-3">تنبيه المستخدم قبل الوقت الكافي مع إعطائه صلاحية التحكم وحبس التركيز بالنافذة.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>// تنبيه المستخدم قبل دقيقتين من النهاية
+setTimeout(function() {
+  // 1. فتح نافذة التنبيه المنبثقة
+  showWarningModal();
+  
+  // 2. تحديث الـ ARIA ونطق التحذير لقارئ الشاشة
+  announceToScreenReader("تحذير: ستنتهي جلستك خلال دقيقتين. هل تود التمديد؟");
+  
+  // 3. توجيه التركيز لزر "تمديد الوقت" لسهولة الوصول بنقرة واحدة
+  document.getElementById('extendBtn').focus();
+}, 180000); // إظهار التنبيه بعد 3 دقائق من أصل 5</code></pre>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-amber-50 border border-amber-100 p-4 rounded-2xl text-xs text-amber-900 leading-relaxed">
+                💡 <b>معلومة برمجية هامة للشرح:</b> عند فتح نافذة تمديد الوقت، يجب إتاحة إغلاقها ومغادرتها بضغطة زر الـ <kbd class="bg-amber-200 px-1 py-0.5 rounded font-mono text-amber-950 text-[10px]">Escape</kbd>، والحرص على أن يكون زر "تمديد الوقت" هو العنصر الأول الذي يستقبل التركيز مباشرة (Auto Focus) لمنع ضياع مستخدمي لوحة المفاتيح.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center border-t border-slate-800 text-xs mt-10">
+        <p>تم التطوير كأداة تفاعلية حية لشرح ومحاكاة معايير سهولة الوصول للحدود الزمنية (Digital Accessibility WCAG 2.2.1 Time Limits and Session Timeouts).</p>
+    </footer>
+
+
+    <!-- ==================== منطق جافا سكريبت التفاعلي للمحاكاة ==================== -->
+    <script>
+        let badInterval = null;
+        let goodInterval = null;
+        let badTimeLeft = 10;
+        let goodTimeLeft = 10;
+        let isGoodRunning = false;
+        let isBadRunning = false;
+
+        // دالة للنطق الصوتي لمحاكاة قارئ الشاشة باللغة العربية
+        function speakSimulatedVoice(text) {
+            const isVoiceEnabled = document.getElementById('voiceToggle').checked;
+            if (!isVoiceEnabled) return;
+
+            window.speechSynthesis.cancel(); // إيقاف النطق الحالي لتفادي التداخل
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // تسجيل البيانات البرمجية في الشاشة التفاعلية
+        function appendSimLog(message, isWarning = false) {
+            const logContainer = document.getElementById('simLog');
+            
+            if (logContainer.innerHTML.includes('// اضغط على أحد أزرار المحاكاة')) {
+                logContainer.innerHTML = '';
+            }
+
+            const time = new Date().toLocaleTimeString('ar-EG', { hour12: false });
+            const div = document.createElement('div');
+            
+            if (isWarning) {
+                div.className = 'text-rose-400 border-r-2 border-rose-500 pr-2 py-1';
+            } else {
+                div.className = 'text-emerald-400 border-r-2 border-emerald-500 pr-2 py-1';
+            }
+            
+            div.innerHTML = `<span class="text-slate-500">[${time}]</span> ${message}`;
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // تفريغ السجل
+        function clearSimLog() {
+            document.getElementById('simLog').innerHTML = `<div class="text-slate-500">// اضغط على أحد أزرار المحاكاة في الأعلى لبدء متابعة خط سير تصفح الكفيف...</div>`;
+        }
+
+
+        /* ==================== 1. منطق محاكاة الجلسة السيئة والمفاجئة ==================== */
+        function startBadSimulation() {
+            if (isBadRunning) return;
+            isBadRunning = true;
+
+            const startBtn = document.getElementById('startBadBtn');
+            const badCardInput = document.getElementById('badCardInput');
+
+            startBtn.disabled = true;
+            startBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            badCardInput.focus();
+
+            appendSimLog("🔴 بدء جلسة الدفع السيئة (10 ثوانٍ إجمالية) - المستخدم يملأ بياناته الآن ببطء.", false);
+            speakSimulatedVoice("بدأت الجلسة، قم بإدخال بيانات البطاقة الآن بسرعة.");
+
+            badInterval = setInterval(() => {
+                badTimeLeft--;
+                document.getElementById('badTimerValue').innerText = `${badTimeLeft} ثوانٍ`;
+
+                if (badTimeLeft === 5) {
+                    appendSimLog("🕒 متبقي 5 ثوانٍ على انتهاء الجلسة. [النظام صامت...] لم يتم إشعار المستخدم أو قارئ الشاشة بأي شيء!", true);
+                }
+
+                if (badTimeLeft <= 0) {
+                    clearInterval(badInterval);
+                    isBadRunning = false;
+                    document.getElementById('badLoggedOutScreen').classList.remove('hidden');
+                    
+                    appendSimLog("🚨 [موت الجلسة المفاجئ]: انتهى الوقت وسجل النظام خروجاً صامتاً ومفاجئاً للمستخدم، وضاعت الأرقام المكتوبة!", true);
+                    appendSimLog("🔊 [إعلان مباغت وعنيف لقارئ الشاشة]: 'تنبيه! انتهت صلاحية الجلسة وتم طردك.'", true);
+                    speakSimulatedVoice("تنبيه، انتهت صلاحية الجلسة، تم تسجيل خروجك وفقدت بياناتك");
+                }
+            }, 1000);
+        }
+
+        function resetBadDemo() {
+            clearInterval(badInterval);
+            isBadRunning = false;
+            badTimeLeft = 10;
+            document.getElementById('badTimerValue').innerText = "10 ثوانٍ";
+            document.getElementById('badLoggedOutScreen').classList.add('hidden');
+            
+            const startBtn = document.getElementById('startBadBtn');
+            startBtn.disabled = false;
+            startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            document.getElementById('badCardInput').value = "";
+            appendSimLog("🔄 تم تصفير المحاكاة السيئة والعودة للحالة الأولى.");
+        }
+
+
+        /* ==================== 2. منطق محاكاة الجلسة الصحيحة والمتاحة ==================== */
+        function startGoodSimulation() {
+            if (isGoodRunning) return;
+            isGoodRunning = true;
+
+            const startBtn = document.getElementById('startGoodBtn');
+            const goodCardInput = document.getElementById('goodCardInput');
+
+            startBtn.disabled = true;
+            startBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            goodCardInput.focus();
+
+            appendSimLog("🟢 بدء جلسة الدفع الصحيحة والمتاحة (10 ثوانٍ إجمالية).", false);
+            speakSimulatedVoice("بدأت الجلسة الآمنة، يمكنك إدخال بياناتك بتمهل تام.");
+
+            goodInterval = setInterval(() => {
+                goodTimeLeft--;
+                document.getElementById('goodTimerValue').innerText = `${goodTimeLeft} ثوانٍ`;
+
+                // عند متبقي نصف الوقت (محاكاة دقيقتين متبقية بالصورة) يظهر التنبيه فوراً
+                if (goodTimeLeft === 5) {
+                    document.getElementById('accessibleWarningModal').classList.remove('hidden');
+                    
+                    // توجيه التركيز فوراً لزر التمديد لسهولة الوصول لمن يستخدم لوحة المفاتيح
+                    document.getElementById('extendSessionBtn').focus();
+
+                    appendSimLog("⚠️ [تنبيه مسبق]: ظهرت نافذة التحذير بنجاح، وتم نقل تركيز لوحة المفاتيح إليها برمجياً.", false);
+                    appendSimLog("🔊 [قارئ الشاشة يعلن بوضوح]: 'تحذير، ستنتهي صلاحية جلستك قريباً خلال دقيقتين. تمديد الوقت، زر.'", false);
+                    speakSimulatedVoice("تحذير، ستنتهي صلاحية جلستك قريباً، هل ترغب في تمديد الوقت؟");
+                }
+
+                if (goodTimeLeft <= 0) {
+                    clearInterval(goodInterval);
+                    isGoodRunning = false;
+                    document.getElementById('accessibleWarningModal').classList.add('hidden');
+                    document.getElementById('goodLoggedOutScreen').classList.remove('hidden');
+
+                    appendSimLog("🚪 انتهى الوقت المحدد دون استجابة، وتم تسجيل الخروج وحفظ البيانات بأمان.");
+                    speakSimulatedVoice("انتهت الجلسة بأمان وتم تسجيل خروجك.");
+                }
+            }, 1000);
+        }
+
+        // تمديد الجلسة بنجاح
+        function extendSession() {
+            // إخفاء نافذة التحذير المنبثقة
+            document.getElementById('accessibleWarningModal').classList.add('hidden');
+            
+            // إعادة تصفير الوقت وإطالة المدة لإتاحة راحة مطلقة للمستخدم
+            goodTimeLeft = 10;
+            document.getElementById('goodTimerValue').innerText = "10 ثوانٍ (تم التمديد)";
+            
+            // إعادة التركيز لحقل إدخال البطاقة لمواصلة الكتابة بأمان وسلاسة
+            document.getElementById('goodCardInput').focus();
+
+            appendSimLog("🏆 [تمديد الجلسة]: نقر المستخدم على 'تمديد الوقت'، تم تصفير المؤقت لـ 10 ثوانٍ إضافية وإعادة التركيز لحقل النص بنجاح.", false);
+            speakSimulatedVoice("تم تمديد وقت جلستك بنجاح، واصل تعبئة بياناتك بتمهل.");
+        }
+
+        // إنهاء الجلسة يدوياً مبكراً لراحة المستخدم وسرعة الخروج
+        function terminateSessionEarly() {
+            clearInterval(goodInterval);
+            isGoodRunning = false;
+            document.getElementById('accessibleWarningModal').classList.add('hidden');
+            document.getElementById('goodLoggedOutScreen').classList.remove('hidden');
+
+            appendSimLog("🟢 اختار المستخدم تسجيل الخروج الفوري والأمن.");
+            speakSimulatedVoice("تم تسجيل خروجك بأمان.");
+        }
+
+        function resetGoodDemo() {
+            clearInterval(goodInterval);
+            isGoodRunning = false;
+            goodTimeLeft = 10;
+            document.getElementById('goodTimerValue').innerText = "10 ثوانٍ";
+            document.getElementById('goodLoggedOutScreen').classList.add('hidden');
+            document.getElementById('accessibleWarningModal').classList.add('hidden');
+            
+            const startBtn = document.getElementById('startGoodBtn');
+            startBtn.disabled = false;
+            startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            document.getElementById('goodCardInput').value = "";
+            appendSimLog("🔄 تم تصفير المحاكاة المتاحة بنجاح.");
+        }
+
+        // مراقبة ضغط زر الهروب (Escape Key) لإغلاق نافذة التنبيه تماشياً مع معايير الوصول
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !document.getElementById('accessibleWarningModal').classList.contains('hidden')) {
+                appendSimLog("⌨️ تم الضغط على زر [Escape] لوحة المفاتيح لإغلاق نافذة التمديد تلقائياً.");
+                extendSession(); // يتم اعتبار الهروب كتمديد تلقائي أو إغلاق وعودة للاستمارة لحماية بيانات المستخدم
+            }
+        });
+    </script>
+</body>
+</html>
