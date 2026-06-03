@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سهولة الوصول الرقمي: مشكلة الصفحات بطيئة التحميل</title>
+    <!-- Tailwind CSS للتصميم العصري والسريع -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- خطوط جوجل لتحسين المظهر العربي -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* تأثيرات حركة التركيز المخصصة لسهولة الوصول */
+        button:focus, input:focus {
+            outline: 3px solid #6366f1;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- شريط التنقل العلوي -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
+                    <!-- أيقونة سهولة الوصول -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-900">أداة الشرح التفاعلية: سهولة الوصول الرقمي</h1>
+                    <p class="text-xs text-slate-500">مقارنة عملية لمشكلة "الصفحات بطيئة التحميل" وطرق معالجتها</p>
+                </div>
+            </div>
+            
+            <!-- أداة تمكين نطق قارئ الشاشة محاكاة بالصوت -->
+            <div class="flex items-center gap-2 bg-indigo-50 px-3 py-2 rounded-lg border border-indigo-100">
+                <label for="voiceToggle" class="text-sm font-semibold text-indigo-900 cursor-pointer select-none">
+                    🔊 تفعيل محاكاة الصوت لقارئ الشاشة
+                </label>
+                <input type="checkbox" id="voiceToggle" checked class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500 cursor-pointer">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- القسم الأول: لوحة المعلومات النظرية والمشكلة -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <!-- كرت المشكلة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-rose-600">
+                        <span class="p-1.5 bg-rose-50 rounded-lg">🚨</span>
+                        <h2 class="text-lg font-bold">1. المشكلة: بطء التحميل</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        يتوقع المستخدمون دوماً استجابة فورية من المواقع والتطبيقات الرقمية. عندما يستغرق تحميل صفحة أو معالجة طلب (مثل الضغط على زر إرسال) وقتاً طويلاً:
+                    </p>
+                    <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside mb-4">
+                        <li>يصاب المستخدم بالاحباط الشديد والتشكيك في عمل الموقع.</li>
+                        <li>قد يغادر بعض المستخدمين الموقع نهائياً.</li>
+                        <li class="font-bold text-slate-800 underline decoration-indigo-500 decoration-2">مستخدمو قارئ الشاشة قد لا يعلمون أبداً أن هناك شيئاً يحدث بالخلفية!</li>
+                    </ul>
+                </div>
+                <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg text-xs text-rose-800">
+                    <strong>النتيجة الكارثية:</strong> يقوم الكفيف بالنقر مراراً وتكراراً على الزر ظناً منه أن الضغطة لم تُسجل، مما يؤدي لإرسال متكرر للبيانات أو تعليق المتصفح.
+                </div>
+            </div>
+
+            <!-- كرت سبب كونها مشكلة سهولة وصول -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-amber-600">
+                        <span class="p-1.5 bg-amber-50 rounded-lg">❓</span>
+                        <h2 class="text-lg font-bold">لماذا هي مشكلة إتاحة وسهولة وصول؟</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="border-r-4 border-emerald-500 pr-3">
+                            <h3 class="text-sm font-bold text-slate-800">المستخدم المبصر:</h3>
+                            <p class="text-xs text-slate-600 mt-1">قد يرى أيقونة تحميل تدور (Spinner) أو يلاحظ تجمد الشاشة مؤقتاً فيعلم أن هناك عملية جارية بالخلفية.</p>
+                        </div>
+                        <div class="border-r-4 border-rose-500 pr-3">
+                            <h3 class="text-sm font-bold text-slate-800">المستخدم الكفيف (مستخدم قارئ الشاشة):</h3>
+                            <p class="text-xs text-slate-600 mt-1">لا يتلقى أي إشارة صوتية أو تغذية راجعة تفيد بأن الصفحة أو الطلب قيد التحميل، ويبقى في حالة صمت تام وكأن الموقع لا يستجيب.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                    💡 <strong>الحل:</strong> استخدام تقنيات ARIA الحية (Live Regions) لإخطار قارئات الشاشة بالتغيرات ديناميكياً.
+                </div>
+            </div>
+
+            <!-- كرت الممارسة السليمة ومبدأ التصميم -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-emerald-600">
+                        <span class="p-1.5 bg-emerald-50 rounded-lg">✅</span>
+                        <h2 class="text-lg font-bold">الممارسة الجيدة ومبدأ التصميم</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        يجب تقديم <strong>تغذية راجعة فورية عن حالة النظام (System Status Feedback)</strong>.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="bg-slate-50 p-2 rounded border border-slate-200 text-xs font-mono text-slate-700">
+                            "جاري تحميل حسابك..."
+                        </div>
+                        <div class="bg-slate-50 p-2 rounded border border-slate-200 text-xs font-mono text-slate-700">
+                            "طلبك قيد المعالجة الآن."
+                        </div>
+                        <div class="bg-slate-50 p-2 rounded border border-slate-200 text-xs font-mono text-slate-700">
+                            عرض مؤشرات تقدم تفاعلية ناطقة ومرئية.
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-indigo-900 text-indigo-100 p-4 rounded-xl text-xs mt-4">
+                    <strong class="block text-amber-300 mb-1">🎯 مبدأ التصميم الهام:</strong>
+                    "وضوح حالة النظام (Visibility of System Status)" هو المبدأ الأول من مبادئ يعقوب نيلسن للتصميم، وهو ركيزة أساسية لتجربة مستخدم عادلة وشاملة للجميع.
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الثاني: منطقة التجربة التفاعلية والمقارنة العملية -->
+        <section class="mb-10">
+            <div class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl">
+                <div class="mb-6">
+                    <span class="bg-indigo-500 text-indigo-50 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">المنصة التفاعلية</span>
+                    <h2 class="text-2xl font-extrabold mt-2">جرّب بنفسك وقارن بين التجربتين</h2>
+                    <p class="text-slate-400 text-sm mt-1">اضغط على زر الإرسال في كلا النموذجين ولاحظ الفرق البصري والصوتي (وكيف يقرأ قارئ الشاشة الحالة)</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- العمود الأيمن: النموذج الخاطئ (بدون معايير الوصول) -->
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-rose-500/30 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-rose-500/20 text-rose-400 text-xs font-bold px-2.5 py-1 rounded border border-rose-500/30">❌ تجربة سيئة (غير ولوجة)</span>
+                                <span class="text-xs text-slate-400 font-mono">طريقة كتابة خاطئة</span>
+                            </div>
+                            
+                            <h3 class="text-lg font-bold mb-2">إرسال استمارة التسجيل</h3>
+                            <p class="text-slate-400 text-xs mb-6 leading-relaxed">
+                                في هذا النموذج، عند الضغط على الزر سيستغرق النظام <span class="text-rose-400 font-bold">5 ثوانٍ</span> لمعالجة الطلب، دون إظهار أي إشعار أو تغيير على الزر أو الشاشة!
+                            </p>
+
+                            <!-- استمارة محاكاة -->
+                            <div class="space-y-4 mb-6">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">الاسم الكامل</label>
+                                    <input type="text" value="عبد الله محمد" disabled class="w-full bg-slate-700 text-slate-400 border border-slate-600 rounded-lg px-3 py-2 text-sm cursor-not-allowed">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <!-- زر الإرسال الخاطئ -->
+                            <button id="badSubmitBtn" onclick="triggerBadDemo()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 flex items-center justify-center gap-2">
+                                إرسال الاستمارة وتحديث البيانات
+                            </button>
+
+                            <!-- رسالة النجاح المخفية والتي تظهر فجأة -->
+                            <div id="badSuccessMsg" class="hidden mt-4 p-3 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400 text-center text-sm">
+                                🎉 تم إرسال البيانات بنجاح بعد 5 ثوانٍ من الانتظار المريب!
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- العمود الأيسر: النموذج الصحيح (مع معايير الوصول الكاملة) -->
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-emerald-500/30 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded border border-emerald-500/30">✅ تجربة ممتازة (ولوجة وسهلة)</span>
+                                <span class="text-xs text-slate-400 font-mono">تطبيق معايير W3C ARIA</span>
+                            </div>
+
+                            <h3 class="text-lg font-bold mb-2">إرسال استمارة التسجيل</h3>
+                            <p class="text-slate-400 text-xs mb-6 leading-relaxed">
+                                هنا قمنا بإضافة <span class="text-emerald-400 font-bold">aria-live="polite"</span> وقمنا بتعطيل الزر مؤقتاً لمنع النقرات المتكررة مع إظهار مؤشر تحميل فوري وناطق بالصوت.
+                            </p>
+
+                            <!-- استمارة محاكاة -->
+                            <div class="space-y-4 mb-6">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">الاسم الكامل</label>
+                                    <input type="text" value="عبد الله محمد" disabled class="w-full bg-slate-700 text-slate-400 border border-slate-600 rounded-lg px-3 py-2 text-sm cursor-not-allowed">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <!-- المنطقة التفاعلية الحية التي يراقبها قارئ الشاشة (aria-live) -->
+                            <div id="accessibleLiveRegion" aria-live="polite" class="sr-only">
+                                <!-- سيتم إدراج نصوص ديناميكية هنا ليقرأها قارئ الشاشة فوراً دون تشتيت المستخدم -->
+                            </div>
+
+                            <!-- زر الإرسال الصحيح -->
+                            <button id="goodSubmitBtn" onclick="triggerGoodDemo()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 flex items-center justify-center gap-2">
+                                <span id="goodBtnText">إرسال الاستمارة وتحديث البيانات</span>
+                                <!-- مؤشر التحميل الدوار المخفي افتراضياً -->
+                                <svg id="goodBtnSpinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </button>
+
+                            <!-- رسالة التحميل المرئية والمكتوبة بوضوح لذوي الإعاقات البصرية الخفيفة أو الذهنية -->
+                            <div id="goodLoadingStatus" class="hidden mt-4 p-3 bg-indigo-950 border border-indigo-500/30 rounded-xl flex items-center gap-3">
+                                <span class="flex h-3 w-3 relative">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+                                </span>
+                                <span class="text-indigo-200 text-xs">جاري معالجة طلبك وتحديث البيانات، يرجى الانتظار ثوانٍ معدودة...</span>
+                            </div>
+
+                            <!-- رسالة النجاح الواضحة مع نطق صوتي فوري -->
+                            <div id="goodSuccessMsg" class="hidden mt-4 p-3 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400 text-center text-sm flex items-center justify-center gap-2">
+                                <span>🎉</span>
+                                <span>تم إرسال نموذجك وتحديث البيانات بنجاح!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- لوحة محاكاة قارئ الشاشة والتقارير الحية -->
+                <div class="mt-8 pt-8 border-t border-slate-800">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-300 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 bg-indigo-500 rounded-full animate-pulse"></span>
+                                شاشة المطورين: محاكاة ما "يسمعه" مستخدم قارئ الشاشة الآن
+                            </h4>
+                            <p class="text-xs text-slate-500">هذا السجل يظهر بدقة الكلمات التي ينطقها قارئ الشاشة (مثل NVDA أو VoiceOver) في نفس اللحظة</p>
+                        </div>
+                        <button onclick="clearSimulatorLog()" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold underline">تفريغ السجل</button>
+                    </div>
+
+                    <div id="screenReaderLog" class="bg-black rounded-xl p-4 h-44 overflow-y-auto font-mono text-xs text-emerald-400 space-y-2 border border-slate-800">
+                        <div class="text-slate-500">// اضغط على أي زر إرسال بالأعلى لبدء المحاكاة وفهم سلوك قارئ الشاشة...</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- القسم الثالث: شرح الكود البرمجي (المقارنة البرمجية) للمطورين -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">الشرح البرمجي للمطورين</h2>
+            <p class="text-slate-500 text-xs mb-6">كيف يمكننا إصلاح مشكلة بطء التحميل باستخدام لغة HTML وجافا سكريبت الأساسية؟</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- الكود السيء -->
+                <div>
+                    <h3 class="text-sm font-bold text-rose-600 mb-2 flex items-center gap-1.5">
+                        <span>❌ الكود غير الولوج (الخاطئ)</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-3">زر بسيط يرسل البيانات دون اتخاذ أي إجراء إضافي، مما يتسبب في صمت قارئ الشاشة تماماً.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>&lt;!-- كود بسيط لا يعطي أي تلميح بوجود عملية بالخلفية --&gt;
+&lt;button id="submitBtn" onclick="sendData()"&gt;
+  إرسال الاستمارة
+&lt;/button&gt;
+
+&lt;script&gt;
+function sendData() {
+  // يتم إرسال البيانات وتستغرق المعالجة 5 ثوانٍ
+  // الكود لا يفعل شيئاً سوى إظهار رسالة النجاح بعد انتهاء المدة!
+}
+&lt;/script&gt;</code></pre>
+                </div>
+
+                <!-- الكود الصحيح -->
+                <div>
+                    <h3 class="text-sm font-bold text-emerald-600 mb-2 flex items-center gap-1.5">
+                        <span>✅ الكود الولوج والمطابق للمعايير (الصحيح)</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-3">استخدام <code class="bg-slate-100 text-indigo-600 px-1 py-0.5 rounded">aria-live</code> مع تعطيل الزر مؤقتاً لراحة ذوي الإعاقة الكلية أو البصرية.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>&lt;!-- 1. منطقة الإعلان الديناميكي المخفية مخصصة لقارئ الشاشة --&gt;
+&lt;div id="liveRegion" aria-live="polite" class="sr-only"&gt;&lt;/div&gt;
+
+&lt;!-- 2. زر الإرسال مع تفعيل المعطيات المرئية والصوتية --&gt;
+&lt;button id="submitBtn" onclick="sendData()"&gt;
+  &lt;span id="btnText"&gt;إرسال الاستمارة&lt;/span&gt;
+  &lt;span id="spinner" class="hidden animate-spin"&gt;🌀&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;script&gt;
+function sendData() {
+  // أ. تعطيل الزر لمنع النقرات المتكررة
+  document.getElementById('submitBtn').disabled = true;
+  
+  // ب. إظهار المؤشر الدوار بصرياً
+  document.getElementById('spinner').classList.remove('hidden');
+  
+  // ج. تحديث منطقة ARIA ليعلن قارئ الشاشة عن بدء العملية صوتياً!
+  document.getElementById('liveRegion').innerText = "جاري إرسال البيانات، يرجى الانتظار...";
+}
+&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-indigo-50 border border-indigo-100 p-4 rounded-2xl flex flex-col sm:flex-row gap-4 items-center justify-between">
+                <div class="text-indigo-950">
+                    <h4 class="text-sm font-bold">لماذا استخدمنا <code class="bg-indigo-100 text-indigo-700 px-1 py-0.5 rounded">aria-live="polite"</code>؟</h4>
+                    <p class="text-xs text-indigo-800 mt-1">يُجبر هذا الخيار برمجيات قارئ الشاشة على نطق التغير الحاصل في محتوى هذا العنصر فور انتهاء القارئ من قراءة النص الحالي للمستخدم دون مقاطعته بعنف، مما يخلق تجربة مستخدم سلسلة كأنه يرى الشاشة تماماً.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center border-t border-slate-800 text-xs">
+        <p>تم التطوير كأداة تفاعلية حية لشرح ومحاكاة معايير سهولة الوصول الرقمي (Digital Accessibility WCAG 2.1).</p>
+    </footer>
+
+    <!-- منطق جافا سكريبت التفاعلي والمحاكاة -->
+    <script>
+        // دالة للمساعدة في نطق النصوص باستخدام ميزة توليد الكلام بالمتصفح (محاكاة قارئ الشاشة الحقيقي)
+        function speakSimulatedVoice(text) {
+            const isVoiceEnabled = document.getElementById('voiceToggle').checked;
+            if (!isVoiceEnabled) return;
+
+            // إيقاف أي كلام جاري حالياً لتلافي التداخل
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA'; // لغة عربية سعودية للحصول على نطق سليم
+            utterance.rate = 1.0;     // سرعة القراءة
+            utterance.pitch = 1.0;    // طبقة الصوت
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // إضافة سجل جديد في شاشة محاكاة قارئ الشاشة
+        function appendToLog(message, isWarning = false) {
+            const logContainer = document.getElementById('screenReaderLog');
+            
+            // إزالة نص التنبيه البدئي إن وجد
+            if (logContainer.innerHTML.includes('// اضغط على أي زر إرسال')) {
+                logContainer.innerHTML = '';
+            }
+
+            const time = new Date().toLocaleTimeString('ar-EG', { hour12: false });
+            const logItem = document.createElement('div');
+            
+            if (isWarning) {
+                logItem.className = 'text-rose-400 border-r-2 border-rose-500 pr-2 py-1';
+            } else {
+                logItem.className = 'text-emerald-400 border-r-2 border-emerald-500 pr-2 py-1';
+            }
+            
+            logItem.innerHTML = `<span class="text-slate-500">[${time}]</span> ${message}`;
+            logContainer.appendChild(logItem);
+            
+            // التمرير التلقائي لأسفل السجل
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // تفريغ السجل البرمجي
+        function clearSimulatorLog() {
+            document.getElementById('screenReaderLog').innerHTML = `<div class="text-slate-500">// اضغط على أي زر إرسال بالأعلى لبدء المحاكاة وفهم سلوك قارئ الشاشة...</div>`;
+        }
+
+
+        /* ==================== محاكاة النموذج الخاطئ (بدون معايير سهولة الوصول) ==================== */
+        function triggerBadDemo() {
+            const badBtn = document.getElementById('badSubmitBtn');
+            const successMsg = document.getElementById('badSuccessMsg');
+            
+            // إعادة ضبط الرسائل والزر
+            successMsg.classList.add('hidden');
+            
+            // إضافة سجلات لمحاكاة قارئ الشاشة
+            appendToLog("🔴 ضغط المستخدم المبصر أو الكفيف على زر [إرسال الاستمارة وتحديث البيانات]", false);
+            appendToLog("⚠️ [صمت مطبق...] قارئ الشاشة صامت تماماً ولم يعلن عن أي حدث! الكفيف يظن أن الزر لم يستجب أو تعطل ويحاول الضغط مرة أخرى.", true);
+            
+            // لن نقوم بتعطيل الزر في النموذج السيء لمحاكاة نقرات الكفيف المتكررة بدافع الشك
+            let clickCount = 1;
+            const originalText = badBtn.innerText;
+            
+            // إذا ضغط المستخدم مرة أخرى في غضون الـ 5 ثوانٍ
+            badBtn.onclick = function() {
+                clickCount++;
+                appendToLog(`⚠️ [صمت...] نقرة متكررة رقم (${clickCount}) بدافع الشك لعدم وجود تغذية راجعة!`, true);
+            };
+
+            // محاكاة تأخير الخادم لمدة 5 ثوانٍ
+            setTimeout(() => {
+                successMsg.classList.remove('hidden');
+                
+                appendToLog("🟢 بعد مرور 5 ثوانٍ مريبة، تظهر رسالة النجاح بصرياً فجأة.", false);
+                appendToLog("🔊 [إعلان مفاجئ لقارئ الشاشة]: '🎉 تم إرسال البيانات بنجاح بعد 5 ثوانٍ من الانتظار المريب!' (تغير مفاجئ بدون تحضير مسبق أو تنبيه ببدء العملية)", false);
+                speakSimulatedVoice("تم إرسال البيانات بنجاح بعد خمس ثوان من الانتظار المريب");
+                
+                // إعادة تعيين الزر للحالة الأولى
+                badBtn.onclick = triggerBadDemo;
+            }, 5000);
+        }
+
+
+        /* ==================== محاكاة النموذج الصحيح (معايير سهولة الوصول) ==================== */
+        function triggerGoodDemo() {
+            const goodBtn = document.getElementById('goodSubmitBtn');
+            const goodBtnText = document.getElementById('goodBtnText');
+            const spinner = document.getElementById('goodBtnSpinner');
+            const loadingStatus = document.getElementById('goodLoadingStatus');
+            const successMsg = document.getElementById('goodSuccessMsg');
+            const liveRegion = document.getElementById('accessibleLiveRegion');
+
+            // إعادة ضبط العناصر
+            successMsg.classList.add('hidden');
+            loadingStatus.classList.remove('hidden');
+            
+            // أ. تعطيل الزر لمنع النقرات المتكررة وضمان حماية خادم البيانات
+            goodBtn.disabled = true;
+            goodBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            spinner.classList.remove('hidden');
+            goodBtnText.innerText = "جاري الإرسال...";
+
+            // سجل قارئ الشاشة
+            appendToLog("🟢 ضغط المستخدم على زر [إرسال الاستمارة وتحديث البيانات]", false);
+            appendToLog("🔊 [قارئ الشاشة يعلن فوراً]: 'تم تعطيل الزر. جاري معالجة طلبك، يرجى الانتظار...'", false);
+            
+            // ب. تحديث منطقة ARIA الحية لتعريف البرنامج والناطق التلقائي
+            liveRegion.innerText = "جاري إرسال استمارتك ومعالجة البيانات بالخلفية، يرجى الانتظار بضع ثوانٍ...";
+            speakSimulatedVoice("جاري إرسال استمارتك ومعالجة البيانات بالخلفية، يرجى الانتظار بضع ثوانٍ");
+
+            // محاكاة تأخير الخادم لمدة 5 ثوانٍ
+            setTimeout(() => {
+                // إخفاء مؤشر التحميل وتحديث حالة الزر
+                loadingStatus.classList.add('hidden');
+                spinner.classList.add('hidden');
+                goodBtnText.innerText = "إرسال الاستمارة وتحديث البيانات";
+                goodBtn.disabled = false;
+                goodBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                
+                // إظهار رسالة النجاح
+                successMsg.classList.remove('hidden');
+
+                // سجل قارئ الشاشة والتنبيه الصوتي بالنجاح
+                appendToLog("🟢 نجحت العملية وتم تحديث البيانات في الخادم.", false);
+                appendToLog("🔊 [قارئ الشاشة يعلن بسعادة]: 'تم إرسال نموذجك وتحديث البيانات بنجاح!'", false);
+                
+                liveRegion.innerText = "تم إرسال نموذجك وتحديث البيانات بنجاح!";
+                speakSimulatedVoice("تم إرسال نموذجك وتحديث البيانات بنجاح");
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
