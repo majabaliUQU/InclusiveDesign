@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سهولة الوصول الرقمي: الأنماط المظلمة والخادعة (Dark Patterns)</title>
+    <!-- Tailwind CSS للتصميم -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- خطوط جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* مؤشر التركيز البصري المخصص للتصفح بلوحة المفاتيح */
+        :focus {
+            outline: 4px solid #10b981 !important;
+            outline-offset: 3px !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- شريط التنقل العلوي -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-emerald-100 text-emerald-600 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-950">الأنماط المظلمة والخادعة (Dark Patterns)</h1>
+                    <p class="text-xs text-slate-500">الدرس الثامن: مبدأ التصميم الأخلاقي ومساعدة المستخدم على اتخاذ قرارات مستنيرة</p>
+                </div>
+            </div>
+            
+            <!-- أداة تفعيل نطق الصوت لمحاكاة قارئ الشاشة -->
+            <div class="flex items-center gap-2 bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-100">
+                <label for="voiceToggle" class="text-sm font-semibold text-emerald-950 cursor-pointer select-none">
+                    🔊 تفعيل نطق محاكاة قارئ الشاشة
+                </label>
+                <input type="checkbox" id="voiceToggle" checked class="w-4 h-4 text-emerald-600 border-slate-300 rounded focus:ring-emerald-500 cursor-pointer">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+        
+        <!-- القسم الأول: لوحة المفاهيم والمشكلة بناءً على الصورة المرفقة بالترتيب -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <!-- كرت المشكلة والتعريف -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-rose-600">
+                        <span class="p-1.5 bg-rose-50 rounded-lg">🕵️‍♂️</span>
+                        <h2 class="text-lg font-bold">1. ما هي الأنماط المظلمة؟</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        هي تقنيات تصميمية وحيل واجهات مستخدم (UI) خبيثة ومدروسة، تهدف إلى **التلاعب بالمستخدم وتوجيهه برغبة قسرية** للقيام بإجراءات لم يكن ينوي أو يخطط للقيام بها مطلقاً.
+                    </p>
+                    <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg text-xs text-rose-800">
+                        <strong>أشهر الحيل بالصورة:</strong> تصميم زر إلغاء الاشتراك ليكون نصاً رمادياً صغيراً جداً وغير قابل للضغط بلوحة المفاتيح، بينما يظهر زر الاستمرار كزر أخضر عملاق!
+                    </div>
+                </div>
+            </div>
+
+            <!-- كرت أمثلة على الأنماط المظلمة وعواقبها -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-amber-600">
+                        <span class="p-1.5 bg-amber-50 rounded-lg">⚠️</span>
+                        <h2 class="text-lg font-bold">أمثلة وأضرار شائعة</h2>
+                    </div>
+                    <ul class="space-y-3 text-xs text-slate-600 mb-4">
+                        <li class="flex gap-2 items-start">
+                            <span class="text-rose-500 font-bold">🚫 تعقيد إلغاء الاشتراك:</span>
+                            <span>إجبار المستخدم على المرور بـ 5 صفحات استعطاف لإلغاء خدمة تم الاشتراك بها بنقرة واحدة.</span>
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="text-rose-500 font-bold">👀 الأزرار المخفية:</span>
+                            <span>إخفاء خيار الإلغاء أو وضعه بلون يماثل تماماً لون الخلفية لئلا تراه العين العادية.</span>
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="text-rose-500 font-bold">✍️ الصياغة المضللة:</span>
+                            <span>استخدام نفي مزدوج أو صياغة مربكة للأزرار مثل: "لا أريد عدم الاستمرار في الخدمة".</span>
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="text-rose-500 font-bold">♿ استبعاد ذوي الإعاقة:</span>
+                            <span>أزرار الإلغاء المظلمة تصمم غالباً كعناصر غير دلالية (مثل <code>span</code>) مما يجعلها مستحيلة الرصد لقارئ الشاشة.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- كرت الممارسة السليمة والمبدأ الأخلاقي -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-emerald-600">
+                        <span class="p-1.5 bg-emerald-50 rounded-lg">✨</span>
+                        <h2 class="text-lg font-bold">الممارسة الأخلاقية السليمة</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        ينص المبدأ الأخلاقي للتصميم (Ethical Principle) على أن **التصميم يجب أن يساعد المستخدم على اتخاذ قرارات مدروسة وحرة، وليس خداعه**.
+                    </p>
+                    <div class="space-y-2 text-xs text-slate-600">
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>وضوح وتساوي الخيارات:</b> إبراز خياري "الاستمرار" و"الإلغاء" بوضوح وتباين لوني متساوٍ ومتكافئ.</span>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>أزرار دلالية متكاملة:</b> إتاحة الوصول لكامل الخيارات عبر لوحة المفاتيح <kbd class="bg-slate-200 px-1 py-0.5 rounded text-[10px] font-mono text-slate-800">Tab</kbd>.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs mt-4">
+                    <strong class="block text-emerald-300 mb-1">🎯 لماذا يهمنا هذا؟</strong>
+                    "الأنماط المظلمة تهدم الثقة (Reduce Trust)، وتدمر تجربة المستخدم (Harm UX)، وتستبعد العجزة وذوي الاحتياجات الخاصة بالكامل."
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الثاني: المقارنة العملية التفاعلية الحية -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            
+            <!-- العمود الأيمن: محاكاة النمط المظلم السيء والخادع (Bad Example) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-rose-200 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-rose-50 text-rose-600 text-xs font-bold px-3 py-1 rounded">❌ نمط مظلم خادع (غير أخلاقي)</span>
+                        <span class="text-xs text-slate-400 font-mono">Dark Pattern Example</span>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold mb-2 text-slate-900">شاشة إلغاء الاشتراك في الباقة الممتازة</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        تأمل كيف يتلاعب النظام بك بصرياً وجسدياً؛ حيث يسلط الضوء بالكامل على خيار الدفع والترقية ويجعل خيار الإلغاء مستحيلاً وعصياً على الرصد.
+                    </p>
+
+                    <!-- واجهة المحاكاة السيئة -->
+                    <div class="space-y-6 border border-slate-100 p-6 rounded-2xl bg-slate-50 text-center relative">
+                        <!-- تلميح فخ الاستعجال الوهمي -->
+                        <div class="bg-rose-100 text-rose-800 text-[11px] font-bold py-1 px-3 rounded-full inline-block animate-pulse">
+                            ⚠️ عجل! يتبقى فقط 4 مقاعد متاحة بهذا الخصم! (استعجال وهمي)
+                        </div>
+
+                        <h4 class="text-sm font-bold text-slate-800">هل أنت متأكد من رغبتك في إلغاء الاشتراك؟</h4>
+                        <p class="text-xs text-slate-500">إذا ألغيت الآن، ستفقد كافة المميزات السحابية والهدايا المجانية فوراً!</p>
+
+                        <!-- أزرار خادعة ومضللة تماماً -->
+                        <div class="flex flex-col gap-3 pt-2">
+                            <!-- الزر الأخضر العملاق المصمم لجذب نقرك التلقائي -->
+                            <button id="badKeepBtn" onclick="simulateAction('bad_keep')" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold py-3.5 px-4 rounded-xl transition duration-150 shadow-lg shadow-emerald-100">
+                                الاستمرار في الاشتراك والحصول على ميزات مضاعفة!
+                            </button>
+
+                            <!-- خيار الإلغاء مصمم كنص رمادي متناهي الصغر وليس زراً برمجياً، ولا يمكن التوجيه إليه بـ Tab! -->
+                            <div class="text-right sm:text-center mt-2">
+                                <span onclick="simulateAction('bad_cancel')" class="text-[9px] text-slate-300 cursor-pointer hover:underline hover:text-slate-500 transition-all font-light" style="font-size: 8px;">
+                                    إلغاء (أو ربما لا، أريد متابعة الدفع)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-rose-700 space-y-1 bg-rose-50/30 p-3 rounded-xl">
+                    <p><b>💔 العيوب البارزة في هذا النمط:</b></p>
+                    <ul class="list-disc list-inside space-y-1 text-[11px]">
+                        <li><b>انعدام التكافؤ البصري:</b> زر الاستمرار ملون وضخم جداً، بينما خيار الإلغاء بلون رمادي ميت وبحجم خط 8px لكي تتجاهله العين تماماً.</li>
+                        <li><b>عجز الإتاحة الحركية:</b> خيار الإلغاء عبارة عن عنصر <code>span</code> عادي، ولا يستجيب إطلاقاً للتنقل بواسطة زر الـ <kbd class="bg-rose-100 px-1 rounded font-mono">Tab</kbd> في لوحة المفاتيح!</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- العمود الأيسر: محاكاة التصميم المتاح والأخلاقي (Good Example) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-emerald-200 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded">✅ تصميم أخلاقي ومتاح للجميع</span>
+                        <span class="text-xs text-slate-400 font-mono">Ethical Design Example</span>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-2 text-slate-900">شاشة إلغاء الاشتراك الشفافة والسهلة</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        هنا يُمنح المستخدم كامل الاحترام والحرية؛ حيث يظهر الخياران بتباين متكافئ، وأزرار حقيقية واضحة ومقروءة بالكامل عبر لوحة المفاتيح والتقنيات المساعدة.
+                    </p>
+
+                    <!-- واجهة المحاكاة الأخلاقية والشفافة -->
+                    <div class="space-y-6 border border-slate-100 p-6 rounded-2xl bg-slate-50 text-center relative">
+                        <!-- مساحة بيضاء كافية وبدون تلميحات استعجال كاذبة -->
+                        <div class="h-6"></div>
+
+                        <h4 class="text-sm font-bold text-slate-800">تأكيد خيار إلغاء الاشتراك</h4>
+                        <p class="text-xs text-slate-500">نحن نحترم قرارك دائماً. يمكنك إلغاء الاشتراك أو الاحتفاظ به بضغطة زر واحدة.</p>
+
+                        <!-- أزرار حقيقية، واضحة، متكافئة التباين والفرز البصري ومتاحة لـ Tab -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <!-- زر الاحتفاظ بالاشتراك -->
+                            <button id="goodKeepBtn" onclick="simulateAction('good_keep')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 px-4 rounded-xl border border-slate-300 transition duration-150">
+                                الاحتفاظ بالاشتراك
+                            </button>
+
+                            <!-- زر إلغاء الاشتراك (بنفس الدرجة والبروز لضمان الشفافية) -->
+                            <button id="goodCancelBtn" onclick="simulateAction('good_cancel')" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-4 rounded-xl transition duration-150 shadow-md shadow-rose-100">
+                                إلغاء الاشتراك الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-emerald-800 space-y-1 bg-emerald-50/30 p-3 rounded-xl">
+                    <p><b>✨ لماذا ينجح هذا النموذج الأخلاقي؟</b></p>
+                    <ul class="list-disc list-inside space-y-1 text-[11px]">
+                        <li><b>احترام وحرية كاملة:</b> يسهل على العين فرز الخيارين فوراً دون خداع أو تضليل لوني.</li>
+                        <li><b>دعم كامل للإتاحة:</b> كلا الخيارين يمثلان أزراراً دلالية حقيقية (<code>&lt;button&gt;</code>) قابلة للتنقل السلس والآمن بـ لوحة المفاتيح وقارئات الشاشة.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- القسم الثالث: متتبع قارئ الشاشة التفاعلي المباشر (Screen Reader & Keyboard Focus Simulator) -->
+        <section class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl mb-10">
+            <h3 class="text-base font-bold text-emerald-400 mb-4 flex items-center gap-2">
+                <span class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></span>
+                شاشة المطورين والمحاكاة التفاعلية (Keyboard Focus & Screen Reader Live Log)
+            </h3>
+            <p class="text-slate-400 text-xs mb-6">
+                انقر على الأزرار بالأعلى أو تنقل بـ <kbd class="bg-slate-800 px-1 py-0.5 rounded text-[10px] font-mono text-slate-300">Tab</kbd> في لوحة المفاتيح لترصد كيف يفرّق الكفيف والتقنيات المساعدة بين الحيل الخادعة والممارسات الشفافة:
+            </p>
+
+            <div class="bg-black/60 rounded-2xl p-6 font-mono text-sm min-h-[140px] border border-slate-800 flex flex-col justify-between">
+                <div id="simLog" class="space-y-1 text-xs text-slate-300">
+                    <div class="text-slate-500">// جرب التفاعل مع الأزرار بالأعلى لرصد سلوك لوحة المفاتيح وقارئ الشاشة في الحالتين...</div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-[10px] text-slate-400">
+                    <span>* يتم نطق العبارات صوتياً باللغة العربية عبر محرك التركيب الصوتي للمتصفح عند تفعيل النطق الصوتي بالأعلى.</span>
+                    <button onclick="clearSimLog()" class="text-emerald-400 hover:text-emerald-300 underline font-semibold">تفريغ السجل</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الرابع: الكود البرمجي للمطورين ومقارنة البناء البرمجي -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">الشرح والتحليل البرمجي للأنماط المظلمة</h2>
+            <p class="text-slate-500 text-xs mb-6">كيف تحل ممارسات سهولة الوصول مشاكل واجهات المستخدم الخادعة تقنياً؟</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- كود النمط المظلم الخادع -->
+                <div>
+                    <h3 class="text-sm font-bold text-rose-600 mb-2">❌ برمجة الأزرار المضللة (الخاطئة)</h3>
+                    <p class="text-xs text-slate-500 mb-3">إقصاء كامل لذوي الإعاقة ومستخدمي لوحة المفاتيح عبر تجريد عنصر الإلغاء من هويته البرمجية كزر حقيقي.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>&lt;!-- كود خادع ولا يعطي دلالة برمجية لقارئ الشاشة --&gt;
+&lt;div class="modal"&gt;
+  &lt;!-- زر استمرار ساطع وجذاب --&gt;
+  &lt;button class="keep-btn"&gt;استمرار الاشتراك&lt;/button&gt;
+  
+  &lt;!-- خيار الإلغاء تم تصميمه كـ span رمادي ميت --&gt;
+  &lt;!-- الكارثة: لا يمكن التركيز عليه بلوحة المفاتيح (No Focus) --&gt;
+  &lt;span class="cancel-text-tiny" onclick="cancel()"&gt;إلغاء&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <!-- كود الممارسة السليمة والأخلاقية -->
+                <div>
+                    <h3 class="text-sm font-bold text-emerald-600 mb-2">✅ البرمجة الأخلاقية والولوجة (الصحيحة)</h3>
+                    <p class="text-xs text-slate-500 mb-3">احترام رغبة المستخدم عبر تقديم خيارات متكافئة بصرياً وبرمجياً وتحقيق معايير WCAG الصارمة.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>&lt;!-- كود شفاف ويسهل الوصول إليه بالكامل --&gt;
+&lt;div class="modal"&gt;
+  &lt;!-- خياران متكافئان تماماً برمجياً وبصرياً --&gt;
+  &lt;div class="button-group"&gt;
+    &lt;button class="btn btn-secondary"&gt;الاحتفاظ بالاشتراك&lt;/button&gt;
+    &lt;button class="btn btn-danger"&gt;إلغاء الاشتراك الآن&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-indigo-50 border border-indigo-100 p-4 rounded-2xl text-xs text-indigo-900 leading-relaxed">
+                💡 <b>معلومة برمجية هامة للشرح:</b> عندما تحرم خيار الإلغاء من كونه وسماً دلالياً مثل <code>&lt;button&gt;</code> أو <code>&lt;a&gt;</code>، فإن متصفحات الويب والتقنيات المساعدة تسقط هذا العنصر تماماً من شجرة الـ DOM التفاعلية المخصصة للكفيف ومستخدمي لوحة المفاتيح. هذا يعني أن الكفيف لن يعلم أساساً بوجود خيار للإلغاء في الصفحة، وهو ما يخالف المعايير الأخلاقية والمجتمعية ويعتبر ممارسة غير مقبولة برمجياً.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center border-t border-slate-800 text-xs mt-10">
+        <p>تم التطوير كأداة تفاعلية حية لشرح ومحاكاة معايير سهولة الوصول ومكافحة الأنماط المظلمة (Digital Accessibility WCAG & Ethical UI Design - Dark Patterns).</p>
+    </footer>
+
+
+    <!-- ==================== منطق جافا سكريبت لتأدية المحاكاة التفاعلية ==================== -->
+    <script>
+        // دالة للنطق الصوتي لمحاكاة قارئ الشاشة باللغة العربية
+        function speakSimulatedVoice(text) {
+            const isVoiceEnabled = document.getElementById('voiceToggle').checked;
+            if (!isVoiceEnabled) return;
+
+            window.speechSynthesis.cancel(); // إيقاف النطق الحالي لتفادي التداخل
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // تسجيل البيانات في السجل التفاعلي
+        function appendSimLog(message, isWarning = false) {
+            const logContainer = document.getElementById('simLog');
+            
+            if (logContainer.innerHTML.includes('// جرب التفاعل')) {
+                logContainer.innerHTML = '';
+            }
+
+            const time = new Date().toLocaleTimeString('ar-EG', { hour12: false });
+            const div = document.createElement('div');
+            
+            if (isWarning) {
+                div.className = 'text-rose-400 border-r-2 border-rose-500 pr-2 py-1';
+            } else {
+                div.className = 'text-emerald-400 border-r-2 border-emerald-500 pr-2 py-1';
+            }
+            
+            div.innerHTML = `<span class="text-slate-500">[${time}]</span> ${message}`;
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // تفريغ السجل
+        function clearSimLog() {
+            document.getElementById('simLog').innerHTML = `<div class="text-slate-500">// جرب التفاعل مع الأزرار بالأعلى لرصد سلوك لوحة المفاتيح وقارئ الشاشة في الحالتين...</div>`;
+        }
+
+        // دالة معالجة التفاعل والنقرات
+        function simulateAction(actionType) {
+            if (actionType === 'bad_keep') {
+                appendSimLog("🟢 نقر المستخدم على زر الاستمرار الساطع في التنسيق المظلم الخادع.", false);
+                appendSimLog("🔊 [قارئ الشاشة يعلن]: 'زر الاستمرار في الاشتراك والحصول على ميزات مضاعفة!'", false);
+                speakSimulatedVoice("الاستمرار في الاشتراك والحصول على ميزات مضاعفة");
+            } 
+            else if (actionType === 'bad_cancel') {
+                appendSimLog("🚨 [تنبيه عائق الوصول]: نقر المستخدم على نص إلغاء المظلم بصعوبة بالغة بالماوس.", true);
+                appendSimLog("⚠️ [تحذير لوحة المفاتيح]: هذا النص غير قابل للوصول تماماً بواسطة زر الـ Tab! مستخدم لوحة المفاتيح محروم برمجياً من الإلغاء!", true);
+                appendSimLog("🔊 [قارئ الشاشة صامت]: لا توجد دلالات أو إعلان لزر حقيقي للإلغاء.", true);
+                speakSimulatedVoice("تنبيه، تم النقر بصعوبة. العنصر غير متاح برمجياً لقارئ الشاشة ولوحة المفاتيح");
+            } 
+            else if (actionType === 'good_keep') {
+                appendSimLog("🟢 نقر المستخدم على زر الاحتفاظ بالاشتراك المتكافئ والأخلاقي.");
+                appendSimLog("🔊 [قارئ الشاشة يعلن]: 'زر، الاحتفاظ بالاشتراك.'");
+                speakSimulatedVoice("الاحتفاظ بالاشتراك");
+            } 
+            else if (actionType === 'good_cancel') {
+                appendSimLog("🏆 [انتصار الإتاحة والشفافية]: نقر المستخدم بنجاح وسهولة مطلقة على زر إلغاء الاشتراك الآن.");
+                appendSimLog("🔊 [قارئ الشاشة يعلن بوضوح]: 'زر، إلغاء الاشتراك الآن.'");
+                speakSimulatedVoice("إلغاء الاشتراك الآن");
+            }
+        }
+
+        // رصد وضبط التنقل بـ لوحة المفاتيح لشرح وإثبات مشكلة الـ Focus للجمهور
+        document.addEventListener('focusin', function(e) {
+            const target = e.target;
+            let label = target.tagName.toLowerCase();
+            
+            if (target.id) label += `#${target.id}`;
+            if (target.innerText) {
+                label += ` ("${target.innerText.substring(0, 20)}...")`;
+            }
+
+            appendSimLog(`⌨️ [تنقل بـ Tab]: انتقل مؤشر لوحة المفاتيح بنجاح إلى: ${label}`, false);
+        });
+    </script>
+</body>
+</html>
