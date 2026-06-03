@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سهولة الوصول: تنسيق المحتوى والهرمية المنطقية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        .reading-order-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ef4444;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 20;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .good-badge { background: #10b981 !important; }
+        .focus-ring { outline: 3px solid #6366f1; outline-offset: 4px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white border-b py-4 shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-amber-100 text-amber-600 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">تنسيق المحتوى والهرمية (Layout Hierarchy)</h1>
+                    <p class="text-xs text-slate-500">الدرس الثاني: كيف نبني محتوى منطقي وسهل القراءة؟</p>
+                </div>
+            </div>
+            <button onclick="toggleReadingOrder()" id="orderBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+                <span>👁️ إظهار ترتيب القراءة</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+        <!-- شرح المشكلة -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border-r-4 border-rose-500">
+                <h2 class="text-lg font-bold text-rose-600 mb-3">المشكلة: التنسيق المربك</h2>
+                <p class="text-sm leading-relaxed">
+                    يتم وضع المعلومات بترتيب غير منطقي أو مربك برمجياً. لا يستطيع المستخدم (خاصة من يستخدم المكبرات أو قارئات الشاشة) التعرف على:
+                </p>
+                <ul class="mt-3 space-y-2 text-sm text-slate-600 list-disc list-inside">
+                    <li>الرسالة الأساسية (Main Message).</li>
+                    <li>الإجراءات المطلوبة (Actions).</li>
+                    <li>تسلسل القراءة المنطقي.</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border-r-4 border-indigo-500">
+                <h2 class="text-lg font-bold text-indigo-600 mb-3">لماذا هي مشكلة سهولة وصول؟</h2>
+                <p class="text-sm leading-relaxed text-slate-600">
+                    يعتمد مستخدمو <b>قارئات الشاشة</b> على هيكل الكود (DOM) وليس الشكل البصري. بينما يعتمد مستخدمو <b>المكبرات</b> على رؤية جزء صغير من الشاشة، فإذا كان الترتيب غير متسلسل، سيفقدون سياق المحتوى عند الانتقال من نقطة لأخرى.
+                </p>
+            </div>
+        </section>
+
+        <!-- منطقة المقارنة التفاعلية -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            
+            <!-- نموذج (خطأ): تنسيق عشوائي -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-rose-100 text-rose-700 text-xs font-bold px-2 py-1 rounded">❌ مثال خاطئ (Bad)</span>
+                </div>
+                
+                <div class="bg-white border-2 border-dashed border-rose-200 rounded-3xl p-8 relative min-h-[400px] flex flex-col items-center justify-center text-center shadow-lg">
+                    <!-- عنصر بصري كبير ولكنه تافه برمجياً -->
+                    <div class="bad-item mb-4" data-order="1">
+                        <span class="text-[80px] font-black text-rose-600 leading-none">تنزيلات!</span>
+                        <p class="text-xs text-slate-400 font-mono tracking-widest uppercase">Big Visual Text</p>
+                    </div>
+
+                    <!-- عنصر صغير جداً وهو الأهم (مخفي تقريباً) -->
+                    <div class="bad-item absolute bottom-10 right-10" data-order="3">
+                        <p class="text-[10px] text-gray-400 italic">خصم 50% على جميع المنتجات</p>
+                        <p class="text-[8px] text-slate-300 font-mono">Small hidden text (Real message)</p>
+                    </div>
+
+                    <!-- زر إجراء في مكان غير منطقي -->
+                    <div class="bad-item mt-4" data-order="2">
+                        <button class="bg-slate-800 text-white px-8 py-2 rounded shadow-lg">اضغط هنا</button>
+                        <p class="text-[10px] text-slate-400 mt-1">Button with vague text</p>
+                    </div>
+                </div>
+                
+                <div class="bg-rose-50 p-4 rounded-xl">
+                    <h3 class="text-xs font-bold text-rose-800 mb-1">ماذا يحدث لقارئ الشاشة هنا؟</h3>
+                    <p class="text-[11px] text-rose-700 leading-relaxed">
+                        سيقرأ القارئ كلمة "تنزيلات" ثم "اضغط هنا" ثم "خصم 50%". المستخدم سيضغط على الزر دون أن يعرف قيمة الخصم لأنها جاءت في آخر الترتيب البرمجي رغم أهميتها.
+                    </p>
+                </div>
+            </div>
+
+            <!-- نموذج (صح): هيكلية واضحة -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded">✅ مثال صحيح (Good)</span>
+                </div>
+
+                <div class="bg-white border-2 border-emerald-100 rounded-3xl p-8 relative min-h-[400px] flex flex-col items-start justify-center text-right shadow-xl">
+                    <div class="good-item mb-2 w-full" data-order="1">
+                        <h2 class="text-4xl font-extrabold text-slate-900 border-r-4 border-indigo-600 pr-4">خصم 50% على كافة المنتجات</h2>
+                        <p class="text-xs text-emerald-600 font-mono mt-1">H1: Main Heading (Clear Message)</p>
+                    </div>
+
+                    <div class="good-item mb-8 w-full" data-order="2">
+                        <p class="text-lg text-slate-600 pr-5">استمتع بأفضل العروض الموسمية المتاحة الآن في متجرنا الإلكتروني.</p>
+                        <p class="text-xs text-emerald-600 font-mono mt-1">Paragraph: Content Description</p>
+                    </div>
+
+                    <div class="good-item w-full" data-order="3">
+                        <button class="bg-indigo-600 text-white text-lg font-bold px-10 py-4 rounded-2xl hover:bg-indigo-700 transition-all shadow-indigo-200 shadow-xl">
+                            تسوق العرض الآن
+                        </button>
+                        <p class="text-xs text-emerald-600 font-mono mt-2">Action Button: Clear & Descriptive</p>
+                    </div>
+                </div>
+
+                <div class="bg-emerald-50 p-4 rounded-xl">
+                    <h3 class="text-xs font-bold text-emerald-800 mb-1">لماذا هذا التنسيق مثالي؟</h3>
+                    <p class="text-[11px] text-emerald-700 leading-relaxed">
+                        يتبع الهيكل الهرمي: العنوان الرئيسي (ما هو العرض؟) ثم المحتوى (التفاصيل) ثم الزر (ماذا أفعل؟). هذا الترتيب البصري يطابق الترتيب البرمجي تماماً.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- محاكي قارئ الشاشة التفاعلي -->
+        <section class="mt-12 bg-slate-900 rounded-3xl p-8 text-white shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-indigo-400">محاكي التصفح المنطقي</h2>
+                    <p class="text-slate-400 text-sm">اختر تجربة لترى كيف سيتفاعل معها المستخدم الكفيف</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <button onclick="simulate('bad')" class="flex items-center gap-4 bg-slate-800 p-5 rounded-2xl border border-slate-700 hover:border-rose-500 transition-all group">
+                    <div class="bg-rose-500/20 text-rose-500 p-3 rounded-xl group-hover:scale-110 transition-transform">❌</div>
+                    <div class="text-right">
+                        <h3 class="font-bold">تشغيل تجربة "التنسيق السيئ"</h3>
+                        <p class="text-xs text-slate-500">استمع للارتباك في المعلومات</p>
+                    </div>
+                </button>
+
+                <button onclick="simulate('good')" class="flex items-center gap-4 bg-slate-800 p-5 rounded-2xl border border-slate-700 hover:border-emerald-500 transition-all group">
+                    <div class="bg-emerald-500/20 text-emerald-500 p-3 rounded-xl group-hover:scale-110 transition-transform">✅</div>
+                    <div class="text-right">
+                        <h3 class="font-bold">تشغيل تجربة "الهرمية الصحيحة"</h3>
+                        <p class="text-xs text-slate-500">استمع للوضوح والتسلسل</p>
+                    </div>
+                </button>
+            </div>
+
+            <div id="simLog" class="mt-6 bg-black rounded-2xl p-6 font-mono text-sm min-h-[150px] border border-slate-800">
+                <div class="text-slate-600">// في انتظار بدء المحاكاة...</div>
+            </div>
+        </section>
+
+        <!-- نصيحة الممارسة الجيدة -->
+        <section class="mt-12 bg-indigo-50 p-8 rounded-3xl border border-indigo-100 flex flex-col md:flex-row gap-8 items-center">
+            <div class="flex-shrink-0 bg-white p-4 rounded-2xl shadow-sm">
+                <img src="https://cdn-icons-png.flaticon.com/512/3242/3242257.png" class="w-20 h-20" alt="Hierarchy icon">
+            </div>
+            <div>
+                <h2 class="text-xl font-bold text-indigo-900 mb-2">القاعدة الذهبية: الهرمية الواضحة</h2>
+                <p class="text-slate-700 leading-relaxed">
+                    استخدم دائماً **الهيكل المنطقي**:
+                    <span class="block mt-2 font-bold text-indigo-600">1. العنوان الرئيسي (H1) -> 2. العنوان الفرعي (H2) -> 3. المحتوى (P) -> 4. زر الإجراء (Action)</span>
+                    هذا لا يساعد المكفوفين فحسب، بل يحسن أيضاً من محركات البحث (SEO) ويجعل الموقع أسهل لجميع المستخدمين في "مسح" الصفحة بالعين.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        let isOrderVisible = false;
+
+        function toggleReadingOrder() {
+            isOrderVisible = !isOrderVisible;
+            const badItems = document.querySelectorAll('.bad-item');
+            const goodItems = document.querySelectorAll('.good-item');
+            const btn = document.getElementById('orderBtn');
+
+            if (isOrderVisible) {
+                btn.innerHTML = '<span>🙈 إخفاء ترتيب القراءة</span>';
+                btn.classList.replace('bg-indigo-600', 'bg-slate-600');
+                
+                badItems.forEach(item => {
+                    const order = item.getAttribute('data-order');
+                    const badge = document.createElement('div');
+                    badge.className = 'reading-order-badge';
+                    badge.innerText = order;
+                    item.appendChild(badge);
+                    item.classList.add('focus-ring');
+                });
+
+                goodItems.forEach(item => {
+                    const order = item.getAttribute('data-order');
+                    const badge = document.createElement('div');
+                    badge.className = 'reading-order-badge good-badge';
+                    badge.innerText = order;
+                    item.appendChild(badge);
+                    item.classList.add('focus-ring');
+                });
+            } else {
+                btn.innerHTML = '<span>👁️ إظهار ترتيب القراءة</span>';
+                btn.classList.replace('bg-slate-600', 'bg-indigo-600');
+                document.querySelectorAll('.reading-order-badge').forEach(b => b.remove());
+                document.querySelectorAll('.focus-ring').forEach(i => i.classList.remove('focus-ring'));
+            }
+        }
+
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'ar-SA';
+            window.speechSynthesis.speak(msg);
+        }
+
+        function simulate(type) {
+            const log = document.getElementById('simLog');
+            log.innerHTML = '';
+            
+            if (type === 'bad') {
+                const steps = [
+                    { t: "بدء التصفح بقارئ الشاشة...", c: "white" },
+                    { t: "عنصر 1: تنزيلات! (نص كبير)", c: "rose-400" },
+                    { t: "عنصر 2: زر: اضغط هنا", c: "rose-400" },
+                    { t: "المستخدم يتساءل: اضغط هنا لماذا؟ لا يوجد سياق!", c: "amber-400" },
+                    { t: "عنصر 3: نص صغير جداً: خصم 50% على جميع المنتجات", c: "rose-400" },
+                    { t: "المستخدم: أوه! الآن عرفت أن هناك خصماً، ولكنني تجاوزت الزر بالفعل!", c: "rose-500" }
+                ];
+                
+                let i = 0;
+                const interval = setInterval(() => {
+                    if (i < steps.length) {
+                        const div = document.createElement('div');
+                        div.style.color = steps[i].c;
+                        div.innerText = `> ${steps[i].t}`;
+                        log.appendChild(div);
+                        speak(steps[i].t);
+                        i++;
+                    } else { clearInterval(interval); }
+                }, 2000);
+                
+            } else {
+                const steps = [
+                    { t: "بدء التصفح بقارئ الشاشة...", c: "white" },
+                    { t: "عنوان مستوى 1: خصم 50% على كافة المنتجات", c: "emerald-400" },
+                    { t: "فقرة: استمتع بأفضل العروض الموسمية المتاحة الآن...", c: "emerald-400" },
+                    { t: "زر: تسوق العرض الآن", c: "emerald-400" },
+                    { t: "المستخدم: المعلومات واضحة، الترتيب منطقي، سأضغط الآن.", c: "indigo-400" }
+                ];
+                
+                let i = 0;
+                const interval = setInterval(() => {
+                    if (i < steps.length) {
+                        const div = document.createElement('div');
+                        div.style.color = steps[i].c;
+                        div.innerText = `> ${steps[i].t}`;
+                        log.appendChild(div);
+                        speak(steps[i].t);
+                        i++;
+                    } else { clearInterval(interval); }
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
