@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سهولة الوصول الرقمي: النصوص المكدسة والقرائية</title>
+    <!-- Tailwind CSS للتصميم -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- خطوط جوجل (خط القاهرة الأساسي، وخط كوفي معقد للمحاكاة الخاطئة) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* خط معقد ومشتت للمثال السيء */
+        .bad-font {
+            font-family: 'Reem+Kufi', 'Times New Roman', serif !important;
+            letter-spacing: -0.05em;
+        }
+        /* خط مقروء للمثال الجيد */
+        .good-font {
+            font-family: 'Cairo', sans-serif !important;
+        }
+        /* حركة بسيطة لمحاكاة تشتت القراءة لمرضى عسر القراءة */
+        .dyslexic-shake {
+            display: inline-block;
+            transition: transform 0.15s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- شريط التنقل العلوي -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-teal-100 text-teal-600 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-950">النصوص المكدسة والمقروئية (Too Much Text)</h1>
+                    <p class="text-xs text-slate-500">الدرس الرابع: تنظيم كتل النصوص وتسهيل قراءة المحتوى</p>
+                </div>
+            </div>
+            
+            <!-- أزرار تفاعلية سريعة للمحاكاة -->
+            <div class="flex flex-wrap items-center gap-2">
+                <button onclick="toggleDyslexiaSimulation()" id="dyslexiaBtn" class="bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-700 text-xs font-bold py-2 px-3 rounded-lg transition-all flex items-center gap-1.5">
+                    <span>🧬 تشغيل محاكي عسر القراءة (Dyslexia)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+        
+        <!-- القسم الأول: لوحة المفاهيم والمشكلة بناءً على الصورة المرفقة -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <!-- كرت المشكلة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-rose-600">
+                        <span class="p-1.5 bg-rose-50 rounded-lg">📄</span>
+                        <h2 class="text-lg font-bold">1. المشكلة: الكتل النصية الضخمة</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        عندما تظهر النصوص على شكل "كتل صلبة مكدسة" ومتقاربة جداً دون تجزئة أو فقرات تفصلها:
+                    </p>
+                    <ul class="space-y-2 text-slate-600 text-xs list-disc list-inside mb-4">
+                        <li><b>إرهاق بصري فوري:</b> تجد العين صعوبة بالغة في تحديد بداية ونهاية كل سطر.</li>
+                        <li><b>صعوبة التركيز والفرز:</b> يعجز المستخدم عن تمييز الفكرة الرئيسية أو تصفح المحتوى سريعاً بالعين (Scanning).</li>
+                        <li><b>صعوبة إدراكية مضاعفة:</b> يضيع السياق لمرضى عسر القراءة أو ممن يدرسون اللغة حديثاً.</li>
+                    </ul>
+                </div>
+                <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg text-[11px] text-rose-800">
+                    <strong>إحصائية مقلقة:</strong> أكثر من 60% من المستخدمين يغادرون الصفحة فوراً إذا واجهوا كتلة نصية تزيد عن 200 كلمة غير مقسمة.
+                </div>
+            </div>
+
+            <!-- كرت الفئات المتأثرة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-amber-600">
+                        <span class="p-1.5 bg-amber-50 rounded-lg">👥</span>
+                        <h2 class="text-lg font-bold">من هم الفئات الأكثر تضرراً؟</h2>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                        تصميم النصوص الخاطئ يمثل عائقاً حقيقياً ومباشراً للعديد من المستخدمين:
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-amber-50/50 p-2 rounded-xl border border-amber-100">
+                            <h3 class="text-xs font-bold text-amber-900">1. ذوو عسر القراءة (Dyslexia):</h3>
+                            <p class="text-[11px] text-slate-600 mt-0.5">تتداخل الحروف وتتحرك أمام أعينهم برمجياً وتصميمياً عند ضيق المسافات والخطوط الفنية المزخرفة.</p>
+                        </div>
+                        <div class="bg-purple-50/50 p-2 rounded-xl border border-purple-100">
+                            <h3 class="text-xs font-bold text-purple-900">2. ذوو الصعوبات الإدراكية والذهنية:</h3>
+                            <p class="text-[11px] text-slate-600 mt-0.5">الفقرات الطويلة تشتت انتباههم وتتطلب جهداً ذهنياً جباراً للاحتفاظ بتركيز الفكرة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كرت الحل والممارسة الممتازة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-emerald-600">
+                        <span class="p-1.5 bg-emerald-50 rounded-lg">✨</span>
+                        <h2 class="text-lg font-bold">الممارسة السليمة للقرائية</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        لضمان تجربة قراءة مثالية وسهلة للجميع، احرص على تطبيق الثلاثي الذهبي للقرائية:
+                    </p>
+                    <div class="space-y-2 text-xs text-slate-600">
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>تقسيم النص لفقرات قصيرة:</b> لا تتعدى الفقرة 3-4 أسطر.</span>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>الخطوط الواضحة (Sans-serif):</b> مثل Arial و Open Sans و Cairo.</span>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>التباين المرتفع والمساحات:</b> مسافة تباين لوني 4.5:1 على الأقل.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs mt-4">
+                    <strong class="block text-teal-300 mb-1">💡 قاعدة التصميم:</strong>
+                    "النص الجيد هو النص الذي تستطيع قراءته وفهمه في 5 ثوانٍ فقط من النظرة الأولى."
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الثاني: المقارنة التفاعلية الحية والعملية -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            
+            <!-- العمود الأيمن: النص السيء (المكدس والمقعد) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-rose-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-rose-50 text-rose-600 text-xs font-bold px-3 py-1 rounded">❌ مثال خاطئ (نص مكدس ومعقد)</span>
+                        <span class="text-xs text-slate-400 font-mono">Unstructured Wall of Text</span>
+                    </div>
+
+                    <!-- صندوق التحكم بالتباين والخط في النموذج السيء لمحاكاة العوائق البصرية -->
+                    <div class="mb-4 p-3 bg-rose-50/50 rounded-xl border border-rose-100 flex flex-wrap gap-2 text-xs">
+                        <span class="font-bold text-rose-800">تأثيرات المحاكاة السيئة:</span>
+                        <button onclick="toggleLowContrast()" class="bg-white border border-rose-200 px-2 py-1 rounded hover:bg-rose-100 text-[11px] text-rose-700">⚠️ تباين لوني ضعيف جداً</button>
+                        <button onclick="toggleTightLeading()" class="bg-white border border-rose-200 px-2 py-1 rounded hover:bg-rose-100 text-[11px] text-rose-700">⚠️ تضييق المسافات بين الأسطر</button>
+                    </div>
+
+                    <!-- محتوى النص المكدس السيء -->
+                    <div id="badTextContainer" class="bad-font text-slate-600 text-sm leading-none tracking-tight text-justify transition-all duration-300">
+                        تعد الإتاحة الرقمية وسهولة الوصول من أهم الركائز الأساسية في تصميم المواقع الإلكترونية الحديثة حيث تهدف إلى تمكين جميع المستخدمين بمختلف قدراتهم الجسدية والإدراكية من الوصول إلى المعلومات والخدمات واستخدامها بكل سهولة ويسر ودون أي عوائق تذكر وتعتبر النصوص الطويلة والمكدسة واحدة من أكبر التحديات التي تواجه المستخدمين على شبكة الإنترنت وخاصة أولئك الذين يعانون من عسر القراءة أو صعوبات التعلم أو من يقرؤون بلغة ثانية حيث يتسبب النص المتصل وغير المجزأ في إرهاق بصري شديد وصعوبة في تتبع السطور مما يؤدي في الكثير من الأحيان إلى مغادرة المستخدم للموقع دون إكمال القراءة ولحل هذه المشكلة ينصح خبراء واجهات المستخدم باتباع ممارسات بسيطة وفعالة للغاية ومنها تقسيم النصوص الطويلة إلى فقرات قصيرة لا تتجاوز كل فقرة منها ثلاثة إلى أربعة أسطر واستخدام عناوين فرعية واضحة ومقروءة تفصل بين الأقسام المختلفة لإعطاء العين قسطاً من الراحة ومساعدة العقل على تنظيم وتصنيف المعلومات المقروءة بشكل فوري بالإضافة إلى ذلك يجب استخدام خطوط واضحة وبسيطة من فئة الخطوط غير المزخرفة مثل خط أريال أو هيلفيتيكا وتجنب الخطوط الفنية أو المعقدة التي تحتوي على تذييلات أو زوايا حادة تشتت الانتباه كما تلعب نسبة التباين اللوني بين النص والخلفية دوراً حاسماً حيث يجب ألا تقل نسبة التباين عن أربعة ونصف إلى واحد لضمان وضوح الأحرف لضعاف البصر إن تطبيق هذه المعايير البسيطة لا يخدم فقط فئة محددة من ذوي الاحتياجات الخاصة بل يساهم بشكل مباشر في تحسين تجربة المستخدم العامة لجميع الزوار ويزيد من معدل بقائهم في الصفحة وتفاعلهم مع المحتوى بشكل إيجابي ومثمر للغاية.
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-rose-700 space-y-1 bg-rose-50/30 p-3 rounded-xl">
+                    <p><b>💔 العيوب البارزة هنا:</b></p>
+                    <ul class="list-disc list-inside space-y-1 text-[11px]">
+                        <li>كتلة نص متصلة مكونة من 300 كلمة بدون علامات ترقيم واضحة للعين.</li>
+                        <li>استخدام خط مزخرف ذي زوايا حادة ومتقاربة تزيد صعوبة فرز الكلمات.</li>
+                        <li>انعدام التباين والمسافات يسبب صداعاً وتشتتاً سريعاً للمصاب بصعوبات التعلم.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- العمود الأيسر: النص المنسق والصحيح (متاح وسهل القراءة) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-emerald-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded">✅ مثال صحيح (نص مقسم ومقروء)</span>
+                        <span class="text-xs text-slate-400 font-mono">Accessible & Structured Text</span>
+                    </div>
+
+                    <!-- صندوق ضبط القرائية المخصص لسهولة الاستخدام -->
+                    <div class="mb-4 p-3 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-wrap items-center gap-4 text-xs">
+                        <span class="font-bold text-emerald-800">🎛️ تخصيص القراءة (خصائص سهولة الوصول):</span>
+                        <div class="flex items-center gap-2">
+                            <label for="fontSizeRange" class="text-[11px] text-slate-600">حجم الخط:</label>
+                            <input type="range" id="fontSizeRange" min="14" max="22" value="16" oninput="adjustGoodText()" class="w-20 cursor-pointer">
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label for="lineHeightRange" class="text-[11px] text-slate-600">تباعد الأسطر:</label>
+                            <input type="range" id="lineHeightRange" min="1.4" max="2.2" step="0.1" value="1.8" oninput="adjustGoodText()" class="w-20 cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- محتوى النص المقسم بتنسيق ممتاز -->
+                    <div id="goodTextContainer" class="good-font text-slate-800 text-base leading-relaxed text-justify space-y-6">
+                        
+                        <div class="good-section">
+                            <h3 class="text-base font-bold text-slate-900 border-r-4 border-teal-500 pr-2.5 mb-2">1. مفهوم الإتاحة والوصول الرقمي</h3>
+                            <p class="text-sm text-slate-600">
+                                تعد الإتاحة الرقمية وسهولة الوصول من أهم الركائز الأساسية في تصميم المواقع الإلكترونية الحديثة. حيث تهدف إلى تمكين جميع المستخدمين، بمختلف قدراتهم الجسدية والإدراكية، من الوصول إلى المعلومات والخدمات واستخدامها بكل سهولة ويسر ودون أي عوائق تذكر.
+                            </p>
+                        </div>
+
+                        <div class="good-section">
+                            <h3 class="text-base font-bold text-slate-900 border-r-4 border-teal-500 pr-2.5 mb-2">2. تحدي النصوص المكدسة</h3>
+                            <p class="text-sm text-slate-600">
+                                تعتبر النصوص الطويلة والمكدسة واحدة من أكبر التحديات التي تواجه المستخدمين على شبكة الإنترنت. خاصة أولئك الذين يعانون من عسر القراءة (Dyslexia)، أو صعوبات التعلم، أو من يقرؤون بلغة ثانية، حيث يتسبب النص المتصل وغير المجزأ في إرهاق بصري شديد وصعوبة بالغة في تتبع السطور.
+                            </p>
+                        </div>
+
+                        <div class="good-section">
+                            <h3 class="text-base font-bold text-slate-900 border-r-4 border-teal-500 pr-2.5 mb-2">3. الممارسات السليمة لتنظيم النصوص</h3>
+                            <p class="text-sm text-slate-600 mb-2">
+                                ينصح خبراء واجهات المستخدم (UI/UX) دائمًا باتباع الممارسات البسيطة والفعالة التالية لضمان راحة العين:
+                            </p>
+                            <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-600 pr-2">
+                                <li><b>تقسيم النص لفقرات قصيرة:</b> يفضل ألا تتجاوز الفقرة الواحدة 3 إلى 4 أسطر كحد أقصى.</li>
+                                <li><b>استخدام عناوين فرعية صريحة:</b> تمنح العقل فرصة لتصنيف وتنظيم المعلومات المقروءة فوريًا.</li>
+                                <li><b>اختيار خطوط بسيطة (Sans-serif):</b> والابتعاد عن الخطوط المزخرفة والقديمة لتبسيط شكل الحروف.</li>
+                                <li><b>التباين العالي:</b> لضمان عدم تلاشي الحروف البصرية لضعاف النظر.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-emerald-800 space-y-1 bg-emerald-50/30 p-3 rounded-xl">
+                    <p><b>✨ لماذا تعتبر هذه التجربة مريحة وسهلة الوصول؟</b></p>
+                    <ul class="list-disc list-inside space-y-1 text-[11px]">
+                        <li><b>تقطيع بؤري مريح:</b> تتيح العناوين والفقرات القصيرة قراءة سريعة ومريحة لجميع العقول.</li>
+                        <li><b>تحكم المستخدم (User Control):</b> تتيح للمستخدم تكبير الخط وزيادة الفراغات بما يناسب قدراته البصرية.</li>
+                        <li><b>هرمية واضحة:</b> توجيه العقل عبر ترقيم وعناوين جانبية ملونة وجاذبة للانتباه.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- القسم الثالث: متتبع تفاعلي ومقاييس حية لشرح المبادئ -->
+        <section class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl mb-10">
+            <h3 class="text-lg font-bold text-teal-400 mb-4 flex items-center gap-2">
+                <span class="w-3 h-3 bg-teal-400 rounded-full animate-pulse"></span>
+                مقياس الإتاحة والقرائية الفوري (Accessibility & Readability Analyzer)
+            </h3>
+            <p class="text-slate-400 text-xs mb-6">شاشة توضح المقاييس الحية لكلا المثالين بالأعلى، ليتسنى لك استخدامها في الشرح الأكاديمي والعملي للمطورين:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- مقياس متوسط الكلمات بالفقرة -->
+                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-300 uppercase">متوسط الكلمات لكل فقرة (Words Per Paragraph)</h4>
+                        <p class="text-xs text-slate-500 mt-1">القاعدة: يفضل ألا تتجاوز الفقرة 60 كلمة.</p>
+                    </div>
+                    <div class="mt-4 space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-rose-400">مثال خاطئ:</span>
+                            <span class="font-bold">296 كلمة (كتلة واحدة) ⚠️</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-emerald-400">مثال صحيح:</span>
+                            <span class="font-bold">48 كلمة في المتوسط 🏆</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مقياس التباين اللوني المباشر -->
+                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-300 uppercase">مستوى تباين الألوان البصري (Color Contrast Level)</h4>
+                        <p class="text-xs text-slate-500 mt-1">مقياس WCAG: يجب ألا يقل عن 4.5:1 للمحتوى العادي.</p>
+                    </div>
+                    <div class="mt-4 space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-rose-400">المثال السيء الحالي:</span>
+                            <span id="badContrastMetric" class="font-bold text-rose-400">7.5:1 (ممتاز)</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-emerald-400">المثال الصحيح الحالي:</span>
+                            <span class="font-bold text-emerald-400">9.2:1 (استثنائي) 🏆</span>
+                        </div>
+                    </div>
+                    <div class="text-[10px] text-slate-400 mt-2 bg-slate-900 p-2 rounded">
+                        * جرب الضغط على "تباين لوني ضعيف" لملاحظة تغير المقياس وتأثيره البصري الصعب.
+                    </div>
+                </div>
+
+                <!-- مقياس جاهزية قارئ الشاشة وتتبع الحروف المشتتة -->
+                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-300 uppercase">نوع الخط وهيكلية التصفح (Typeface & Scannability)</h4>
+                        <p class="text-xs text-slate-500 mt-1">التقييم الفوري للخطوط ووجود الهيكلية والعناوين.</p>
+                    </div>
+                    <div class="mt-4 space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-rose-400">مثال خاطئ:</span>
+                            <span class="font-bold text-rose-400">مزخرف وبدون أي عنوان فرعي (صعب)</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-emerald-400">مثال صحيح:</span>
+                            <span class="font-bold text-emerald-400">خط بسيط (Cairo) مع 3 عناوين 🏆</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الرابع: الكود البرمجي للمطورين -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">الشرح والتحليل البرمجي لكتابة نصوص سهلة الوصول</h2>
+            <p class="text-slate-500 text-xs mb-6">كيف نبرمج نصوصاً سهلة القراءة باستخدام خصائص CSS الأساسية والخطوط الآمنة؟</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- الـ CSS الخاطئ والمكدس -->
+                <div>
+                    <h3 class="text-sm font-bold text-rose-600 mb-2">❌ الأخطاء الشائعة في الـ CSS (الخاطئة)</h3>
+                    <p class="text-xs text-slate-500 mb-3">تجاهل المسافات، استخدام خطوط غير مخصصة للقراءة على الشاشات، وتباين لون ضعيف.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>/* كود مسبب للإرهاق ومشاكل عسر القراءة */
+.dense-text {
+  font-family: "Diwan Kufi", cursive; /* خط مزخرف وصعب */
+  font-size: 11px; /* حجم صغير جداً */
+  line-height: 1.0; /* أسطر ملتصقة ببعضها تماماً */
+  color: #a0aec0; /* تباين ضعيف جداً مع الخلفية البيضاء */
+  letter-spacing: -0.05em; /* تضييق الحروف الملتصقة */
+}</code></pre>
+                </div>
+
+                <!-- الـ CSS الصحيح والآمن للوصول -->
+                <div>
+                    <h3 class="text-sm font-bold text-emerald-600 mb-2">✅ الأكواد والمعايير المقترحة (الصحيحة)</h3>
+                    <p class="text-xs text-slate-500 mb-3">تطبيق معايير W3C للحصول على أقصى درجات الراحة البصرية والقرائية.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>/* كود مثالي وسهل القراءة بجميع التقنيات المساعدة */
+.accessible-text {
+  font-family: "Cairo", "Arial", sans-serif; /* خط ناعم وبسيط */
+  font-size: 16px; /* حجم خط ممتاز ومريح للعين */
+  line-height: 1.8; /* مساحة وافرة لمنع تداخل السطور */
+  color: #1a202c; /* تباين عالي جداً يحقق المعايير العالمية */
+  max-width: 70ch; /* حصر طول السطر لتسهيل قراءة العين */
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-slate-50 border border-slate-200 p-4 rounded-2xl text-xs text-slate-600">
+                💡 <b>مفهوم هندسي قيم:</b> الخاصية <code class="bg-slate-200 text-slate-800 px-1 py-0.5 rounded">max-width: 70ch;</code> تمنع السطور من أن تكون طويلة جداً على الشاشات العريضة، حيث يثبت علم النفس البصري أن العين تتشتت إذا تجاوز عدد الأحرف في السطر الواحد 70-80 حرفاً، وتبدأ في فقدان السطر التالي عند الانتقال والعودة لليمين.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center border-t border-slate-800 text-xs mt-10">
+        <p>تم التطوير كأداة تفاعلية لشرح سهولة الوصول الرقمي ومقروئية النصوص (Digital Accessibility WCAG 2.1 Readability).</p>
+    </footer>
+
+
+    <!-- ==================== جافا سكريبت التفاعلية ==================== -->
+    <script>
+        let isDyslexiaActive = false;
+        let originalText = "";
+        let isLowContrast = false;
+        let isTightLeading = false;
+        let dyslexiaInterval = null;
+
+        // دالة المساعدة لنطق التوجيهات
+        function speakSimulatedVoice(text) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 1.1;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // حفظ النص الأصلي عند تحميل الصفحة لتجنب تدميره أثناء محاكاة الديسليكسيا
+        window.onload = function() {
+            const badTextElem = document.getElementById('badTextContainer');
+            originalText = badTextElem.innerText;
+        };
+
+        /* ==================== محاكي عسر القراءة (Dyslexia Simulator) ==================== */
+        // دالة تقوم بتأثير حركة الحروف وإعادة ترتيبها عشوائياً لمحاكاة تجربة مريض الديسليكسيا
+        function toggleDyslexiaSimulation() {
+            const btn = document.getElementById('dyslexiaBtn');
+            const badTextElem = document.getElementById('badTextContainer');
+
+            isDyslexiaActive = !isDyslexiaActive;
+
+            if (isDyslexiaActive) {
+                btn.innerHTML = "<span>🧬 إيقاف محاكاة عسر القراءة</span>";
+                btn.classList.replace('bg-rose-50', 'bg-rose-600');
+                btn.classList.replace('text-rose-700', 'text-white');
+                speakSimulatedVoice("تم تفعيل محاكي عسر القراءة. لاحظ تداخل الحروف واهتزازها.");
+
+                // بدء حلقة التبديل والتشتيت العشوائي المستمر للحروف
+                dyslexiaInterval = setInterval(() => {
+                    const words = originalText.split(' ');
+                    const simulatedWords = words.map(word => {
+                        if (word.length > 3 && Math.random() > 0.4) {
+                            // تبديل حرفين عشوائيين داخل الكلمة لمحاكاة تشتت القراءة لدى مرضى الديسليكسيا
+                            const charArray = word.split('');
+                            const idx1 = 1 + Math.floor(Math.random() * (charArray.length - 2));
+                            const idx2 = 1 + Math.floor(Math.random() * (charArray.length - 2));
+                            
+                            const temp = charArray[idx1];
+                            charArray[idx1] = charArray[idx2];
+                            charArray[idx2] = temp;
+                            
+                            return `<span class="dyslexic-shake text-rose-500" style="transform: translateY(${Math.random() > 0.5 ? '1px' : '-1px'})">${charArray.join('')}</span>`;
+                        }
+                        return word;
+                    });
+                    badTextElem.innerHTML = simulatedWords.join(' ');
+                }, 400);
+
+            } else {
+                btn.innerHTML = "<span>🧬 تشغيل محاكي عسر القراءة (Dyslexia)</span>";
+                btn.classList.replace('bg-rose-600', 'bg-rose-50');
+                btn.classList.replace('text-white', 'text-rose-700');
+                
+                clearInterval(dyslexiaInterval);
+                badTextElem.innerHTML = originalText;
+                speakSimulatedVoice("تم إيقاف محاكي عسر القراءة والعودة للنص الثابت.");
+            }
+        }
+
+
+        /* ==================== محاكاة التباين اللوني الضعيف ومسافات الأسطر في المثال السيء ==================== */
+        function toggleLowContrast() {
+            const badTextElem = document.getElementById('badTextContainer');
+            const contrastMetric = document.getElementById('badContrastMetric');
+            isLowContrast = !isLowContrast;
+
+            if (isLowContrast) {
+                badTextElem.style.color = '#e2e8f0'; // لون رمادي فاتح جداً على خلفية بيضاء لخفض التباين تماماً
+                badTextElem.style.backgroundColor = '#fafafa';
+                contrastMetric.innerText = "1.3:1 (فشل ذريع) 🚨";
+                contrastMetric.className = "font-bold text-rose-500 animate-pulse";
+                speakSimulatedVoice("تم خفض التباين اللوني، أصبح من شبه المستحيل على ضعاف البصر قراءة النص.");
+            } else {
+                badTextElem.style.color = '#475569'; // استعادة التباين الأصلي المقبول نسبياً
+                badTextElem.style.backgroundColor = 'transparent';
+                contrastMetric.innerText = "7.5:1 (مقبول)";
+                contrastMetric.className = "font-bold text-rose-400";
+                speakSimulatedVoice("تمت استعادة التباين اللوني الأصلي.");
+            }
+        }
+
+        function toggleTightLeading() {
+            const badTextElem = document.getElementById('badTextContainer');
+            isTightLeading = !isTightLeading;
+
+            if (isTightLeading) {
+                badTextElem.style.lineHeight = '0.85'; // تضييق وتداخل الأسطر والكلمات تماماً
+                badTextElem.style.letterSpacing = '-0.09em';
+                speakSimulatedVoice("تم تضييق تباعد الأسطر لتتداخل الحروف ببعضها.");
+            } else {
+                badTextElem.style.lineHeight = '1.0'; // العودة للحالة العادية (التي لا تزال خاطئة ومكدسة)
+                badTextElem.style.letterSpacing = '-0.05em';
+                speakSimulatedVoice("تم إلغاء التضييق الزائد.");
+            }
+        }
+
+
+        /* ==================== تعديل النص الصحيح والمقروء تفاعلياً (Sandbox) ==================== */
+        function adjustGoodText() {
+            const goodTextElem = document.getElementById('goodTextContainer');
+            const fontSize = document.getElementById('fontSizeRange').value;
+            const lineHeight = document.getElementById('lineHeightRange').value;
+
+            goodTextElem.style.fontSize = fontSize + 'px';
+            goodTextElem.style.lineHeight = lineHeight;
+        }
+    </script>
+</body>
+</html>
