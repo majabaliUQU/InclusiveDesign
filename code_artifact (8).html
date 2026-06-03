@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سهولة الوصول الرقمي: التشغيل التلقائي (Autoplay)</title>
+    <!-- Tailwind CSS للتصميم -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- خطوط جوجل -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        /* مؤشر التركيز البصري المخصص للتصفح بلوحة المفاتيح */
+        :focus {
+            outline: 4px solid #6366f1 !important;
+            outline-offset: 3px !important;
+        }
+        /* تأثير الوميض السريع (الخاطئ) لمحاكاة تشتيت الصرع البصري */
+        @keyframes flash-fast {
+            0%, 100% { opacity: 1; filter: hue-rotate(0deg); }
+            50% { opacity: 0.8; filter: hue-rotate(180deg); }
+        }
+        .disturbing-video {
+            animation: flash-fast 0.3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- شريط التنقل العلوي -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-950">التشغيل التلقائي للوسائط (Autoplay)</h1>
+                    <p class="text-xs text-slate-500">الدرس السابع: احترام رغبة المستخدم وحماية خصوصيته السمعية والبصرية</p>
+                </div>
+            </div>
+            
+            <!-- أداة تفعيل نطق الصوت لمحاكاة قارئ الشاشة -->
+            <div class="flex items-center gap-2 bg-indigo-50 px-3 py-2 rounded-lg border border-indigo-100">
+                <label for="voiceToggle" class="text-sm font-semibold text-indigo-950 cursor-pointer select-none">
+                    🔊 تفعيل نطق محاكاة قارئ الشاشة
+                </label>
+                <input type="checkbox" id="voiceToggle" checked class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500 cursor-pointer">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+        
+        <!-- القسم الأول: لوحة المفاهيم والمشكلة بناءً على الصورة المرفقة بالترتيب -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <!-- كرت المشكلة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-rose-600">
+                        <span class="p-1.5 bg-rose-50 rounded-lg">🔊</span>
+                        <h2 class="text-lg font-bold">1. ما هو التشغيل التلقائي؟</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        هو بدء تشغيل ملفات الوسائط (الفيديوهات، الموسيقى الخلفية، أو الإعلانات الصاخبة) تلقائياً بمجرد تحميل صفحة الويب ودون الحصول على إذن صريح من المستخدم.
+                    </p>
+                    <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg text-xs text-rose-800">
+                        <strong>المثال الأكثر شيوعاً:</strong> الفيديوهات الإعلانية الجانبية التي تبدأ بالصراخ أو النطق فور فتح موقع إخباري أو مدونة.
+                    </div>
+                </div>
+            </div>
+
+            <!-- كرت العوائق والمشاكل -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-amber-600">
+                        <span class="p-1.5 bg-amber-50 rounded-lg">⚠️</span>
+                        <h2 class="text-lg font-bold">لماذا يعد عائقاً لسهولة الوصول؟</h2>
+                    </div>
+                    <ul class="space-y-3 text-xs text-slate-600">
+                        <li class="flex gap-2 items-start">
+                            <span class="text-rose-500 font-bold">💥 إفزاع المستخدمين:</span>
+                            <span>التشغيل المفاجئ للصوت العالي يسبب فزعاً للمستخدمين وخاصة كبار السن.</span>
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="text-rose-500 font-bold">😰 القلق والتوتر:</span>
+                            <span>يتسبب الصوت العشوائي في تشتيت من يعانون من صعوبات التركيز أو التوحد واضطراب القلق الحسي.</span>
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="text-rose-500 font-bold">🔇 كتم قارئات الشاشة:</span>
+                            <span>يتداخل صوت الفيديو مع صوت قارئ الشاشة (Screen Reader)، مما يمنع المستخدم الكفيف من العثور على أزرار كتم الصوت أو فهم محتوى الصفحة.</span>
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="text-rose-500 font-bold">⚡ نوبات الصرع:</span>
+                            <span>الومضات السريعة للفيديوهات تلقائية التشغيل قد تؤدي لحدوث نوبات صرع بصري مفاجئ.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- كرت الممارسة السليمة -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-4 text-emerald-600">
+                        <span class="p-1.5 bg-emerald-50 rounded-lg">✨</span>
+                        <h2 class="text-lg font-bold">الممارسة السليمة (Good Practice)</h2>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        دائماً احصل على إذن المستخدم أولاً بتطبيق القواعد التالية:
+                    </p>
+                    <div class="space-y-2 text-xs text-slate-600">
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>توفير صورة مصغرة (Thumbnail):</b> مع زر تشغيل (Play) بارز وواضح.</span>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>توفير أزرار التحكم الكاملة:</b> زر إيقاف مؤقت (Pause) وزر إيقاف كلي (Stop).</span>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <span class="text-emerald-500">✔</span>
+                            <span><b>التشغيل الصامت الافتراضي:</b> إذا كان التشغيل التلقائي ضرورياً، يجب أن يبدأ مكتوم الصوت (Muted) وتوفير نصوص توضيحية (Captions).</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs mt-4">
+                    <strong class="block text-indigo-300 mb-1">🎯 القاعدة الذهبية:</strong>
+                    "يجب ألا تصدر أي أصوات أو حركات بصرية دون طلب صريح ونقرة واعية من المستخدم نفسه."
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الثاني: المقارنة العملية التفاعلية الحية والسمعية وبصرية -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            
+            <!-- العمود الأيمن: محاكاة التشغيل التلقائي السيء (Bad Example) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-rose-200 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-rose-50 text-rose-600 text-xs font-bold px-3 py-1 rounded">❌ ممارسة خاطئة ومزعجة جداً</span>
+                        <span class="text-xs text-slate-400 font-mono">Loud Autoplay Video</span>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold mb-2 text-slate-900">إعلان ترويجي صاخب تلقائي</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        اضغط على الزر بالأسفل لمحاكاة دخول المستخدم لصفحة تحتوي على فيديو ترويجي يعمل فجأة بصوت صاخب ومزعج مع ألوان وميضية مشتتة للعين.
+                    </p>
+
+                    <!-- مشغل الفيديو السيء الافتراضي -->
+                    <div id="badVideoPlayer" class="w-full aspect-video bg-slate-950 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden transition-all">
+                        <!-- محاكاة ومضات سريعة وفيديو صاخب -->
+                        <div id="badVideoVisual" class="hidden absolute inset-0 bg-red-600 flex items-center justify-center text-center">
+                            <div class="text-white font-extrabold text-2xl tracking-widest uppercase">🚨 خصم فوري !!! اشتري الآن 🚨</div>
+                        </div>
+
+                        <!-- الحالة الافتراضية الصامتة -->
+                        <div id="badVideoIdle" class="text-center p-4">
+                            <span class="text-4xl">📺</span>
+                            <p class="text-xs text-slate-400 mt-2">محاكي الفيديو التلقائي</p>
+                        </div>
+
+                        <!-- إشعار مستوى الإزعاج والتوتر -->
+                        <div id="panicMeter" class="hidden absolute bottom-4 inset-x-4 bg-black/80 p-3 rounded-xl border border-rose-500/50">
+                            <div class="flex justify-between text-[11px] text-rose-400 mb-1">
+                                <span>📈 مستوى قلق وتشتت المستخدم:</span>
+                                <span class="font-bold">100% (أقصى درجة) ⚠️</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                <div class="bg-rose-500 h-full w-full animate-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex gap-2">
+                    <button id="triggerBadBtn" onclick="startBadAutoplay()" class="flex-grow bg-rose-600 hover:bg-rose-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-150 flex items-center justify-center gap-2">
+                        🔊 محاكاة دخول الصفحة والتشغيل التلقائي
+                    </button>
+                    <button id="stopBadBtn" onclick="stopBadAutoplay()" class="hidden bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 rounded-xl transition">
+                        كتم وإيقاف
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- العمود الأيسر: محاكاة الممارسة السليمة (Good Example) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-emerald-200 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded">✅ ممارسة سليمة وتدعم سهولة الوصول</span>
+                        <span class="text-xs text-slate-400 font-mono">User-Initiated Media Playback</span>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-2 text-slate-900">مشغل وسائط يعتمد على رغبة المستخدم</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        هنا نضع صورة مصغرة (Thumbnail) واضحة وجذابة مع زر تشغيل بارز. لن ينطلق أي صوت أو وميض إلا بنقرة إرادية صريحة من المتصفح.
+                    </p>
+
+                    <!-- مشغل الفيديو السليم -->
+                    <div id="goodVideoPlayer" class="w-full aspect-video bg-slate-900 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden transition-all border border-slate-800">
+                        <!-- الحالة النشطة للفيديو -->
+                        <div id="goodVideoVisual" class="hidden absolute inset-0 bg-slate-950 flex flex-col items-center justify-center text-center p-4">
+                            <span class="text-4xl animate-bounce">🎵</span>
+                            <h4 class="text-sm font-bold text-white mt-3">جاري تشغيل المقطع الصوتي التعليمي الهادئ...</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">يستمتع المستخدم بالاستماع بوعي واسترخاء تام.</p>
+                            
+                            <!-- كتل أزرار تحكم مريحة لإيقاف المقطع في أي وقت -->
+                            <button onclick="stopGoodVideo()" class="mt-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all">
+                                ⏸️ إيقاف مؤقت للمقطع
+                            </button>
+                        </div>
+
+                        <!-- صورة مصغرة بديلة وصامتة (المطلوب هندسياً) -->
+                        <div id="goodVideoThumbnail" class="absolute inset-0 bg-cover bg-center flex flex-col items-center justify-center p-6 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1516280440614-37939bbacd6a?auto=format&fit=crop&w=600&q=80')">
+                            <button id="goodPlayBtn" onclick="startGoodVideo()" aria-label="تشغيل مقطع الشرح التعليمي" class="w-16 h-16 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all transform hover:scale-110 focus:ring-4 focus:ring-emerald-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-current translate-x-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <p class="text-xs text-white mt-3 font-semibold">مقطع شرح تعليمي: دليلك للإتاحة الرقمية</p>
+                            <span class="text-[10px] text-slate-300 bg-black/40 px-2.5 py-0.5 rounded-full mt-1">المدة: 1:30 دقيقة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <p class="text-[11px] text-slate-500">
+                        * يتيح الزر بالأعلى للمستخدم تحكماً مطلقاً في تشغيل وإيقاف الصوت في الوقت الذي يناسبه وبلا تشتيت.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- القسم الثالث: متتبع قارئ الشاشة التفاعلي المباشر (Screen Reader Voice Sim) -->
+        <section class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl mb-10">
+            <h3 class="text-base font-bold text-indigo-400 mb-4 flex items-center gap-2">
+                <span class="w-3 h-3 bg-indigo-400 rounded-full animate-pulse"></span>
+                شاشة المطورين والمحاكاة التفاعلية (Live Screen Reader Voice Sim)
+            </h3>
+            <p class="text-slate-400 text-xs mb-6">
+                شاهد واستمع إلى ما تنطق به التقنيات المساعدة للمستخدم الكفيف وكيف يتشوش بالكامل عند تشغيل الفيديوهات تلقائياً:
+            </p>
+
+            <div class="bg-black/60 rounded-2xl p-6 font-mono text-sm min-h-[140px] border border-slate-800 flex flex-col justify-between">
+                <div id="simLog" class="space-y-1 text-xs text-slate-300">
+                    <div class="text-slate-500">// قم بتجربة تفعيل محاكاة التشغيل التلقائي بالأعلى لمراقبة ارتباك وضياع قارئ الشاشة...</div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-[10px] text-slate-400">
+                    <span>* يتم نطق العبارات صوتياً باللغة العربية عبر محرك التركيب الصوتي للمتصفح عند تفعيل النطق الصوتي بالأعلى.</span>
+                    <button onclick="clearSimLog()" class="text-indigo-400 hover:text-indigo-300 underline font-semibold">تفريغ السجل</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- القسم الرابع: الكود البرمجي للمطورين -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">الشرح البرمجي للمطورين</h2>
+            <p class="text-slate-500 text-xs mb-6">كيف نمنع التشغيل التلقائي المزعج برمجياً ونوفر بيئة مقروءة ويسيرة؟</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- كود التشغيل التلقائي الخاطئ والمزعج -->
+                <div>
+                    <h3 class="text-sm font-bold text-rose-600 mb-2">❌ برمجة وسائط تلقائية صاخبة ومزعجة</h3>
+                    <p class="text-xs text-slate-500 mb-3">تضمين وسم الفيديو مع خاصية التشغيل التلقائي وتفعيل الصوت مباشرة دون مراعاة لتجربة الكفيف.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>&lt;!-- كود خاطئ يتسبب في إفزاع المستخدم وتشويش قارئ الشاشة --&gt;
+&lt;video src="promo-ad.mp4" 
+       autoplay 
+       controls&gt;
+  &lt;!-- يتم تشغيل الفيديو بالصوت المرتفع فوراً عند فتح الصفحة! --&gt;
+&lt;/video&gt;</code></pre>
+                </div>
+
+                <!-- كود الممارسة السليمة والمطابق لمعايير WCAG -->
+                <div>
+                    <h3 class="text-sm font-bold text-emerald-600 mb-2">✅ البرمجة الصحيحة والمتاحة لجميع الحالات</h3>
+                    <p class="text-xs text-slate-500 mb-3">الحل المثالي هو إيقاف autoplay تماماً، وفي حال الرغبة في عرضه تلقائياً لأسباب تسويقية؛ يجب كتمه برمجياً.</p>
+                    <pre class="bg-slate-950 text-slate-200 p-4 rounded-xl text-xs overflow-x-auto font-mono"><code>&lt;!-- الممارسة الأفضل: انتظار نقر الزر من المستخدم --&gt;
+&lt;video src="educational-guide.mp4" 
+       preload="none" 
+       poster="thumbnail.jpg" 
+       controls&gt;
+&lt;/video&gt;
+
+&lt;!-- ممارسة بديلة (في حال الإصرار على العرض التلقائي الصامت) --&gt;
+&lt;video src="scenic-background.mp4" 
+       autoplay 
+       muted 
+       loop 
+       playsinline&gt;
+  &lt;!-- صامت تماماً ومحمي من إحداث الومضات الصرعية البصرية --&gt;
+&lt;/video&gt;</code></pre>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-indigo-50 border border-indigo-100 p-4 rounded-2xl text-xs text-indigo-900 leading-relaxed">
+                💡 <b>معلومة برمجية هامة للشرح:</b> متصفحات الويب الحديثة (مثل كرووم وسافاري) تقوم افتراضياً بحظر أي فيديو يحمل خاصية <code class="bg-indigo-100 text-indigo-800 px-1 py-0.5 rounded">autoplay</code> مالم يتضمن سمة الكتم البرمجي <code class="bg-indigo-100 text-indigo-800 px-1 py-0.5 rounded">muted</code>. تم تطبيق هذا القيد الفني من قبل شركات التقنية الكبرى كخطوة إجبارية لحماية المستخدمين وتطبيق معايير الإتاحة الرقمية بشكل صارم.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center border-t border-slate-800 text-xs mt-10">
+        <p>تم التطوير كأداة تفاعلية حية لشرح ومحاكاة معايير سهولة الوصول للتشغيل التلقائي للوسائط (Digital Accessibility WCAG 1.4.2 Audio Control).</p>
+    </footer>
+
+
+    <!-- ==================== منطق جافا سكريبت لتأدية المحاكاة السمعية والبصرية ==================== -->
+    <script>
+        let badAudioContext = null;
+        let badOscillator = null;
+        let goodAudioContext = null;
+        let goodOscillator = null;
+        let badInterval = null;
+
+        // دالة للنطق الصوتي لمحاكاة قارئ الشاشة باللغة العربية
+        function speakSimulatedVoice(text) {
+            const isVoiceEnabled = document.getElementById('voiceToggle').checked;
+            if (!isVoiceEnabled) return;
+
+            window.speechSynthesis.cancel(); // إيقاف النطق الحالي لتفادي التداخل
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // تسجيل البيانات في السجل التفاعلي
+        function appendSimLog(message, isWarning = false) {
+            const logContainer = document.getElementById('simLog');
+            
+            if (logContainer.innerHTML.includes('// قم بتجربة تفعيل')) {
+                logContainer.innerHTML = '';
+            }
+
+            const time = new Date().toLocaleTimeString('ar-EG', { hour12: false });
+            const div = document.createElement('div');
+            
+            if (isWarning) {
+                div.className = 'text-rose-400 border-r-2 border-rose-500 pr-2 py-1';
+            } else {
+                div.className = 'text-emerald-400 border-r-2 border-emerald-500 pr-2 py-1';
+            }
+            
+            div.innerHTML = `<span class="text-slate-500">[${time}]</span> ${message}`;
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // تفريغ السجل
+        function clearSimLog() {
+            document.getElementById('simLog').innerHTML = `<div class="text-slate-500">// قم بتجربة تفعيل محاكاة التشغيل التلقائي بالأعلى لمراقبة ارتباك وضياع قارئ الشاشة...</div>`;
+        }
+
+
+        /* ==================== 1. منطق محاكاة التشغيل التلقائي السيء والصاخب ==================== */
+        function startBadAutoplay() {
+            // إيقاف أي محاكاة جارية
+            stopBadAutoplay();
+            stopGoodVideo();
+
+            const triggerBtn = document.getElementById('triggerBadBtn');
+            const stopBtn = document.getElementById('stopBadBtn');
+            const badVisual = document.getElementById('badVideoVisual');
+            const badIdle = document.getElementById('badVideoIdle');
+            const panicMeter = document.getElementById('panicMeter');
+
+            triggerBtn.disabled = true;
+            triggerBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            stopBtn.classList.remove('hidden');
+            badVisual.classList.remove('hidden');
+            badVisual.classList.add('disturbing-video');
+            badIdle.classList.add('hidden');
+            panicMeter.classList.remove('hidden');
+
+            // محاكاة إصدار صوت مزعج جداً ومكرر (تخيل إعلان مزعج يعمل فجأة بالخلفية)
+            try {
+                badAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // تكرار توليد نغمات صاخبة مشوشة لمحاكاة تشتيت الصوت المباغت
+                badInterval = setInterval(() => {
+                    if (!badAudioContext) return;
+                    let osc = badAudioContext.createOscillator();
+                    let gain = badAudioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(badAudioContext.destination);
+                    
+                    osc.type = 'sawtooth'; // صوت منشار صاخب وحاد جداً
+                    osc.frequency.setValueAtTime(220 + Math.random() * 600, badAudioContext.currentTime); // نغمات متبدلة ومزعجة
+                    gain.gain.setValueAtTime(0.2, badAudioContext.currentTime); // مستوى صوت مرتفع نسبياً
+                    
+                    osc.start();
+                    osc.stop(badAudioContext.currentTime + 0.3);
+                }, 350);
+            } catch (e) {
+                console.log("Web Audio API not fully supported on this environment.", e);
+            }
+
+            // سرد ما يقع للمستخدم الكفيف في السجل
+            appendSimLog("🚨 [موت سياق القراءة]: بمجرد فتح الصفحة، بدأ الإعلان الصاخب ذو الومضات السريعة بالعمل تلقائياً!", true);
+            appendSimLog("🔊 [قارئ الشاشة يحاول القراءة]: 'مرحباً بك في موقعنا الإخباري، عنوان مستوى واحد... (فجأة يرتفع صوت ترويجي صاخب جداً بالخلفية)'", true);
+            appendSimLog("⚠️ [تداخل الأصوات]: الكفيف عاجز تماماً عن سماع قارئ الشاشة الخاص به الآن بسبب الصوت المرتفع للإعلان، ويحاول يائساً تلمس زر الإغلاق بلوحة المفاتيح دون جدوى!", true);
+
+            speakSimulatedVoice("تحذير تداخل الأصوات. لا أستطيع سماع قارئ الشاشة بسبب الإعلان التلقائي الصاخب");
+        }
+
+        function stopBadAutoplay() {
+            clearInterval(badInterval);
+            if (badAudioContext) {
+                badAudioContext.close();
+                badAudioContext = null;
+            }
+
+            const triggerBtn = document.getElementById('triggerBadBtn');
+            const stopBtn = document.getElementById('stopBadBtn');
+            const badVisual = document.getElementById('badVideoVisual');
+            const badIdle = document.getElementById('badVideoIdle');
+            const panicMeter = document.getElementById('panicMeter');
+
+            triggerBtn.disabled = false;
+            triggerBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            stopBtn.classList.add('hidden');
+            badVisual.classList.add('hidden');
+            badVisual.classList.remove('disturbing-video');
+            badIdle.classList.remove('hidden');
+            panicMeter.classList.add('hidden');
+
+            appendSimLog("🟢 قام المستخدم بكتم أو مغادرة الإعلان الصاخب، وعاد قارئ الشاشة للعمل بسلام وهدوء.");
+        }
+
+
+        /* ==================== 2. منطق الممارسة السليمة والمريحة (المتاحة) ==================== */
+        function startGoodVideo() {
+            // إيقاف أي تداخل صوتي خاطئ
+            stopBadAutoplay();
+
+            const goodVisual = document.getElementById('goodVideoVisual');
+            const goodThumbnail = document.getElementById('goodVideoThumbnail');
+
+            goodVisual.classList.remove('hidden');
+            goodThumbnail.classList.add('opacity-0', 'pointer-events-none');
+
+            // محاكاة تشغيل نغمة موسيقية تعليمية هادئة جداً وجميلة فقط بناء على رغبة المستخدم
+            try {
+                goodAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // نغمة هادئة قصيرة ومريحة
+                let osc = goodAudioContext.createOscillator();
+                let gain = goodAudioContext.createGain();
+                osc.connect(gain);
+                gain.connect(goodAudioContext.destination);
+                
+                osc.type = 'sine'; // موجة جيبية ناعمة جداً ومريحة
+                osc.frequency.setValueAtTime(440, goodAudioContext.currentTime); // نغمة هادئة أساسية
+                gain.gain.setValueAtTime(0.1, goodAudioContext.currentTime);
+                
+                osc.start();
+                // تتلاشى تدريجياً لراحة الأذن
+                gain.gain.exponentialRampToValueAtTime(0.001, goodAudioContext.currentTime + 3.0);
+                osc.stop(goodAudioContext.currentTime + 3.0);
+            } catch (e) {
+                console.log(e);
+            }
+
+            appendSimLog("🏆 [تجربة هادئة ومتحكم بها]: نقر المستخدم بوعي وإرادة على زر تشغيل المقطع التعليمي.", false);
+            appendSimLog("🔊 [قارئ الشاشة يعلن براحة]: 'جاري تشغيل مقطع الشرح التعليمي الهادئ بنجاح.'", false);
+            speakSimulatedVoice("جاري تشغيل مقطع الشرح التعليمي الهادئ بنجاح");
+        }
+
+        function stopGoodVideo() {
+            if (goodAudioContext) {
+                goodAudioContext.close();
+                goodAudioContext = null;
+            }
+
+            const goodVisual = document.getElementById('goodVideoVisual');
+            const goodThumbnail = document.getElementById('goodVideoThumbnail');
+
+            goodVisual.classList.add('hidden');
+            goodThumbnail.classList.remove('opacity-0', 'pointer-events-none');
+
+            appendSimLog("🟢 قام المستخدم بإيقاف المقطع التعليمي مؤقتاً وعاد الصمت والتحكم الكامل للمتصفح.");
+            speakSimulatedVoice("تم إيقاف المقطع التعليمي مؤقتاً");
+        }
+    </script>
+</body>
+</html>
